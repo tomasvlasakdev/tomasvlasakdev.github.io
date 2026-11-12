@@ -1,7 +1,6 @@
-// Builds the site into dist/.
+// Builds the site into dist/: English at /, every other language at /<code>/.
 //   node scripts/build.mjs           build (uses live GitHub data when it can reach the API)
 //   node scripts/build.mjs --offline build from data/github.json only
-//   node scripts/build.mjs --strict  fail if any "TODO:" placeholders are left in content.json
 import { readFile, writeFile, mkdir, rm, cp } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -15,6 +14,10 @@ const content = JSON.parse(await readFile(path.join(root, "content.json"), "utf8
 const brand = JSON.parse(await readFile(path.join(root, "data", "icons.json"), "utf8"));
 const snapshotPath = path.join(root, "data", "github.json");
 const snapshot = JSON.parse(await readFile(snapshotPath, "utf8"));
+const langs = content.languages;
+const DEFAULT = langs[0].code;
+const strings = {};
+for (const l of langs) strings[l.code] = JSON.parse(await readFile(path.join(root, "i18n", `${l.code}.json`), "utf8"));
 
 // ---------- GitHub data ----------
 async function fetchRepo(name) {
@@ -44,22 +47,19 @@ if (!args.has("--offline")) {
 }
 
 // ---------- Helpers ----------
-const todos = [];
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-const isTodo = (s) => typeof s === "string" && s.trim().startsWith("TODO:");
-const txt = (s, where) => {
-  if (isTodo(s)) todos.push(`${where}: ${s}`);
-  return esc(s);
+const missing = new Set();
+const tr = (lang, key) => {
+  const v = strings[lang][key] ?? strings[DEFAULT][key];
+  if (v === undefined) throw new Error(`Missing translation key "${key}"`);
+  if (strings[lang][key] === undefined) missing.add(`${lang}: ${key}`);
+  return v;
 };
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const ym = (iso) => (iso ? String(iso).slice(0, 7) : null);
-const fmtMonth = (s) => {
-  const [y, m] = s.split("-").map(Number);
-  return `${months[m - 1]} ${y}`;
-};
+const pageUrl = (code) => content.site.url + (code === DEFAULT ? "" : `${code}/`);
+const pagePath = (code) => (code === DEFAULT ? "/" : `/${code}/`);
+const ogLocale = { en: "en_US", cs: "cs_CZ", sk: "sk_SK", de: "de_DE", pl: "pl_PL", fr: "fr_FR", es: "es_ES" };
 
-// Line icons (24px grid, stroked) for the info rows and email.
 const line = {
   terminal: '<path d="M4 17l6-5-6-5"/><path d="M12 19h8"/>',
   pin: '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/>',
@@ -76,67 +76,32 @@ const icon = (name) => {
 const chip = (name) =>
   brand[name] ? `<li class="chip">${icon(name)}${esc(brand[name].title)}</li>` : `<li class="chip">${esc(name)}</li>`;
 
-// ---------- Info rows ----------
-const site = content.site;
-const infoHtml = content.info
-  .map((i) =>
-    i.text === "CLOCK"
-      ? `      <li>${icon(i.icon)}<span data-clock="${esc(site.timeZone)}">Central European Time</span></li>`
-      : `      <li>${icon(i.icon)}<span>${txt(i.text, "Info")}</span></li>`,
-  )
-  .join("\n");
+// Visitors landing on the English home page are sent to their browser's language,
+// unless they picked a language themselves (stored by the language menu).
+const others = langs.map((l) => l.code).filter((c) => c !== DEFAULT);
+const redirectScript = `<script>
+  (function () {
+    var S = ${JSON.stringify(others)}, pick = null;
+    try { pick = localStorage.getItem("lang"); } catch (e) { return; }
+    if (pick === "${DEFAULT}") return;
+    if (!pick) {
+      var L = navigator.languages || [navigator.language];
+      for (var i = 0; i < L.length; i++) {
+        var c = String(L[i] || "").toLowerCase().split("-")[0];
+        if (c === "${DEFAULT}") return;
+        if (S.indexOf(c) > -1) { pick = c; break; }
+      }
+    }
+    if (pick && S.indexOf(pick) > -1) location.replace("/" + pick + "/" + location.hash);
+  })();
+</script>`;
 
-// ---------- Links ----------
-const linksHtml = content.links
-  .map(
-    (l) =>
-      `      <li><a href="${esc(l.href)}">${icon(l.icon)}<strong>${esc(l.label)}</strong><span>${esc(l.handle)}</span></a></li>`,
-  )
-  .join("\n");
-
-// ---------- Projects ----------
+// ---------- Shared data ----------
 const projects = content.featured.map((p) => {
   const gh = p.repo ? snapshot.repos[p.repo] || {} : {};
-  return { ...p, date: p.repo ? ym(gh.pushed_at) : p.date, stars: gh.stargazers_count ?? null };
+  return { ...p, date: p.repo ? (gh.pushed_at ? String(gh.pushed_at).slice(0, 7) : null) : p.date, stars: gh.stargazers_count ?? null };
 });
-const sortKey = (p) => (p.date && !isTodo(p.date) ? p.date : "0000");
-projects.sort((a, b) => sortKey(b).localeCompare(sortKey(a)));
-
-const projectHtml = projects
-  .map((p) => {
-    const dateHtml = p.date && !isTodo(p.date) ? `<time datetime="${esc(p.date)}">${fmtMonth(p.date)}</time>` : "";
-    const stars = p.stars > 0 ? `<span class="stars">${p.stars} ${p.stars === 1 ? "star" : "stars"}</span>` : "";
-    const primary = (p.links || [])[0];
-    const title = primary ? `<a href="${esc(primary.href)}">${esc(p.title)}</a>` : esc(p.title);
-    const links = (p.links || [])
-      .map((l) => `<a href="${esc(l.href)}">${esc(l.label)}<span class="visually-hidden">: ${esc(p.title)}</span></a>`)
-      .join(" ");
-    return `        <li class="project row">
-          <p class="when">${dateHtml ? `<span class="visually-hidden">Last updated </span>${dateHtml}` : ""}${stars}</p>
-          <div class="main">
-            <h3>${title}</h3>
-            <p class="summary">${txt(p.summary, `${p.title} summary`)}</p>
-            <p class="why">${txt(p.why, `${p.title} why`)}</p>
-            <ul class="chips" aria-label="Built with">${(p.stack || []).map(chip).join("")}</ul>
-            <p class="plinks">${links}</p>
-          </div>
-        </li>`;
-  })
-  .join("\n");
-
-// ---------- Stack ----------
-const stackHtml = content.stack
-  .map(
-    (g) => `        <div class="row">
-          <dt>${esc(g.label)}</dt>
-          <dd class="main"><ul class="chips">${g.items.map(chip).join("")}</ul></dd>
-        </div>`,
-  )
-  .join("\n");
-
-const updated = snapshot.fetchedAt
-  ? `Project dates from GitHub, refreshed ${new Date(snapshot.fetchedAt).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}.`
-  : "Project dates from GitHub.";
+projects.sort((a, b) => (b.date || "0000").localeCompare(a.date || "0000"));
 
 const css = (await readFile(src("styles.css"), "utf8"))
   .replace(/\/\*[\s\S]*?\*\//g, "")
@@ -144,37 +109,125 @@ const css = (await readFile(src("styles.css"), "utf8"))
   .replace(/\s*([{};,>])\s*/g, "$1")
   .replace(/;}/g, "}")
   .trim();
+const template = await readFile(src("index.html"), "utf8");
 
-let html = await readFile(src("index.html"), "utf8");
-const fill = {
-  CSS: css,
-  SITE_URL: esc(site.url),
-  ROLE: esc(site.role),
-  EMAIL: esc(site.email),
-  INFO: infoHtml,
-  LINKS: linksHtml,
-  PROJECTS: projectHtml,
-  STACK: stackHtml,
-  UPDATED: esc(updated),
-  YEAR: String(new Date().getFullYear()),
-};
-html = html.replace(/\{\{(\w+)\}\}/g, (_, k) => {
-  if (!(k in fill)) throw new Error(`Unknown template field {{${k}}}`);
-  return fill[k];
-});
+// ---------- Render one language ----------
+function render(lang) {
+  const t = (k) => tr(lang, k);
+  const intl = lang === "en" ? "en-GB" : lang;
+  const site = content.site;
+
+  const info = content.info
+    .map((i) =>
+      i.key === "CLOCK"
+        ? `      <li>${icon(i.icon)}<span data-clock="${esc(site.timeZone)}" data-template="${esc(t("clock"))}">${esc(t("clock.fallback"))}</span></li>`
+        : `      <li>${icon(i.icon)}<span>${esc(t(i.key))}</span></li>`,
+    )
+    .join("\n");
+
+  const links = content.links
+    .map((l) => {
+      const label = l.labelKey ? t(l.labelKey) : l.label;
+      const handle = l.handleKey ? t(l.handleKey) : l.handle;
+      return `      <li><a href="${esc(l.href)}">${icon(l.icon)}<strong>${esc(label)}</strong><span>${esc(handle)}</span></a></li>`;
+    })
+    .join("\n");
+
+  const monthFmt = new Intl.DateTimeFormat(intl, { month: "long", year: "numeric", timeZone: "UTC" });
+  const projectHtml = projects
+    .map((p) => {
+      const date = p.date ? `<time datetime="${esc(p.date)}">${esc(monthFmt.format(new Date(p.date + "-01T00:00:00Z")))}</time>` : "";
+      const stars = p.stars > 0 ? `<span class="stars">${p.stars} ★</span>` : "";
+      return `        <li class="project row">
+          <p class="when">${date ? `<span class="visually-hidden">${esc(t("ui.lastUpdated"))} </span>${date}` : ""}${stars}</p>
+          <div class="main">
+            <h3><a href="${esc(p.href)}">${esc(p.title)}</a></h3>
+            <p class="summary">${esc(t(`p.${p.id}.summary`))}</p>
+            <p class="why">${esc(t(`p.${p.id}.why`))}</p>
+            <ul class="chips" aria-label="${esc(t("ui.builtWith"))}">${(p.stack || []).map(chip).join("")}</ul>
+            <p class="plinks"><a href="${esc(p.href)}">${esc(t("ui.sourceCode"))}<span class="visually-hidden">: ${esc(p.title)}</span></a></p>
+          </div>
+        </li>`;
+    })
+    .join("\n");
+
+  const stack = content.stack
+    .map(
+      (g) => `        <div class="row">
+          <dt>${esc(t(g.key))}</dt>
+          <dd class="main"><ul class="chips">${g.items.map(chip).join("")}</ul></dd>
+        </div>`,
+    )
+    .join("\n");
+
+  const menu = langs
+    .map(
+      (l) =>
+        `        <li><a href="${pagePath(l.code)}" hreflang="${l.code}" lang="${l.code}" data-lang="${l.code}"${l.code === lang ? ' aria-current="page"' : ""}>${esc(l.name)}</a></li>`,
+    )
+    .join("\n");
+
+  const alternates = [
+    ...langs.map((l) => `<link rel="alternate" hreflang="${l.code}" href="${pageUrl(l.code)}">`),
+    `<link rel="alternate" hreflang="x-default" href="${pageUrl(DEFAULT)}">`,
+  ].join("\n");
+
+  const updated = snapshot.fetchedAt
+    ? t("ui.datesRefreshed").replace(
+        "{date}",
+        new Date(snapshot.fetchedAt).toLocaleDateString(intl, { day: "numeric", month: "long", year: "numeric" }),
+      )
+    : t("ui.dates");
+
+  const fill = {
+    LANG: lang,
+    LANG_UPPER: lang.toUpperCase(),
+    CSS: css,
+    SITE_URL: esc(site.url),
+    PAGE_URL: esc(pageUrl(lang)),
+    OG_LOCALE: ogLocale[lang] || lang,
+    ALTERNATES: alternates,
+    REDIRECT: lang === DEFAULT ? redirectScript : "",
+    EMAIL: esc(site.email),
+    INFO: info,
+    LINKS: links,
+    LANGMENU: menu,
+    PROJECTS: projectHtml,
+    STACK: stack,
+    UPDATED: esc(updated),
+    YEAR: String(new Date().getFullYear()),
+  };
+  return template.replace(/\{\{(t:)?([\w.]+)\}\}/g, (_, isT, k) => {
+    if (isT) return esc(t(k));
+    if (!(k in fill)) throw new Error(`Unknown template field {{${k}}}`);
+    return fill[k];
+  });
+}
 
 // ---------- Write dist ----------
 await rm(dist(), { recursive: true, force: true });
 await mkdir(dist("fonts"), { recursive: true });
-await writeFile(dist("index.html"), html);
+for (const l of langs) {
+  const dir = l.code === DEFAULT ? dist() : dist(l.code);
+  await mkdir(dir, { recursive: true });
+  await writeFile(path.join(dir, "index.html"), render(l.code));
+}
 await cp(src("fonts"), dist("fonts"), { recursive: true });
 for (const f of ["beaver.svg", "beaver.png"]) await cp(src(f), dist(f));
-await writeFile(dist("robots.txt"), "User-agent: *\nAllow: /\n");
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${langs
+  .map(
+    (l) => `  <url><loc>${pageUrl(l.code)}</loc>
+${langs.map((a) => `    <xhtml:link rel="alternate" hreflang="${a.code}" href="${pageUrl(a.code)}"/>`).join("\n")}
+  </url>`,
+  )
+  .join("\n")}
+</urlset>
+`;
+await writeFile(dist("sitemap.xml"), sitemap);
+await writeFile(dist("robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${content.site.url}sitemap.xml\n`);
 await writeFile(dist(".nojekyll"), "");
 
-console.log(`✓ Built dist/ (${live ? "live GitHub data" : "snapshot data"})`);
-if (todos.length) {
-  console.log(`\n${todos.length} placeholder(s) left in content.json:`);
-  for (const t of todos) console.log(`  - ${t}`);
-  if (args.has("--strict")) process.exit(1);
-}
+console.log(`✓ Built dist/ in ${langs.length} languages (${live ? "live GitHub data" : "snapshot data"})`);
+if (missing.size) console.log(`  Untranslated, fell back to English: ${[...missing].join(", ")}`);

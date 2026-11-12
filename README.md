@@ -4,9 +4,15 @@ My personal portfolio: plain HTML and CSS, no framework, no runtime dependencies
 
 ## Edit the content
 
-Everything you'd want to change lives in **`content.json`**: your role, the key facts at the top, the link tiles, featured projects and the tech stack. Icons are names from `data/icons.json` (brand logos from [Simple Icons](https://simpleicons.org), CC0) or one of `mail`, `terminal`, `pin`, `clock`, `book`.
+- **Text** lives in `i18n/<language>.json`, one file per language with the same keys. English (`en.json`) is the fallback for any missing key.
+- **Everything else** (links, projects, the tech stack, the list of languages) lives in `content.json`. Icons are names from `data/icons.json` (brand logos from [Simple Icons](https://simpleicons.org), CC0) or one of `mail`, `terminal`, `pin`, `clock`, `book`.
+- Design is in `src/styles.css`, page structure in `src/index.html`. The mascot is `src/beaver.svg`, also used as the favicon.
 
-Design (colours, fonts, spacing) is in `src/styles.css`; the page structure is `src/index.html`. The mascot is `src/beaver.svg`, also used as the favicon.
+## Languages
+
+English is served at `/`, every other language at `/<code>/` (for example `/cs/`). On the home page, a small script looks at the visitor's browser languages and forwards them to the first one the site has; if English comes first or nothing matches, they stay on English. Picking a language in the menu is remembered and always wins.
+
+To add a language: copy `i18n/en.json` to `i18n/<code>.json`, translate it, and add `{ "code": "<code>", "name": "<native name>" }` to `languages` in `content.json`.
 
 ## Run it locally
 

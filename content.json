@@ -1,54 +1,59 @@
 {
   "githubUser": "tomasvlasakdev",
-  "_note": "Edit this file to change what the site shows. For GitHub repos, the date comes from the GitHub API at build time; for anything else set 'date' yourself as YYYY-MM. Icons are names from data/icons.json (brand logos) or one of: mail, terminal, pin, clock, book.",
+  "_note": "Data that's the same in every language lives here. All visible text lives in i18n/<language>.json; keys referenced here (like info.build) are looked up there. For GitHub repos the date comes from the GitHub API at build time; for anything else set 'date' yourself as YYYY-MM. Icons are names from data/icons.json (brand logos) or one of: mail, terminal, pin, clock, book.",
   "site": {
     "url": "https://tomasvlasakdev.github.io/",
-    "role": "Student developer",
     "email": "vlasaktomas.cz@gmail.com",
     "timeZone": "Europe/Prague"
   },
+  "languages": [
+    { "code": "en", "name": "English" },
+    { "code": "cs", "name": "Čeština" },
+    { "code": "sk", "name": "Slovenčina" },
+    { "code": "de", "name": "Deutsch" },
+    { "code": "pl", "name": "Polski" },
+    { "code": "fr", "name": "Français" },
+    { "code": "es", "name": "Español" }
+  ],
   "info": [
-    { "icon": "terminal", "text": "Building full-stack web apps with TypeScript, React and Next.js." },
-    { "icon": "pin", "text": "Based in the Czech Republic" },
-    { "icon": "clock", "text": "CLOCK" },
-    { "icon": "book", "text": "Learning backend: APIs, databases and system design" }
+    { "icon": "terminal", "key": "info.build" },
+    { "icon": "pin", "key": "info.based" },
+    { "icon": "clock", "key": "CLOCK" },
+    { "icon": "book", "key": "info.learning" }
   ],
   "links": [
     { "label": "GitHub", "handle": "@tomasvlasakdev", "href": "https://github.com/tomasvlasakdev", "icon": "github" },
     { "label": "Instagram", "handle": "@the_tvlasak", "href": "https://www.instagram.com/the_tvlasak", "icon": "instagram" },
     { "label": "Telegram", "handle": "@tomasvlasakdev", "href": "https://t.me/tomasvlasakdev", "icon": "telegram" },
-    { "label": "Email", "handle": "Write to me", "href": "mailto:vlasaktomas.cz@gmail.com", "icon": "mail" }
+    { "labelKey": "links.email", "handleKey": "links.emailHandle", "href": "mailto:vlasaktomas.cz@gmail.com", "icon": "mail" }
   ],
   "featured": [
     {
+      "id": "cointrack",
       "repo": "cointrack",
       "title": "CoinTrack",
-      "summary": "A crypto portfolio tracker: log your buys and sells, then see what your holdings are worth today and how much you've gained or lost.",
-      "why": "Pulls live prices from the CoinGecko API, charts portfolio value over time, and keeps accounts safe with hashed passwords and prepared SQL statements throughout.",
       "stack": ["php", "mysql", "javascript", "chartdotjs"],
-      "links": [{ "label": "Source code", "href": "https://github.com/tomasvlasakdev/cointrack" }]
+      "href": "https://github.com/tomasvlasakdev/cointrack"
     },
     {
+      "id": "calorie",
       "repo": "calorie_tracker",
       "title": "Calorie Tracker",
-      "summary": "Log what you eat, set a daily calorie goal, and see how the last seven days went.",
-      "why": "A full-stack TypeScript app on the Next.js App Router, with Supabase for sign-in and storage and a chart-based weekly report.",
       "stack": ["nextdotjs", "react", "typescript", "supabase", "tailwindcss"],
-      "links": [{ "label": "Source code", "href": "https://github.com/tomasvlasakdev/calorie_tracker" }]
+      "href": "https://github.com/tomasvlasakdev/calorie_tracker"
     },
     {
+      "id": "mt5",
       "title": "MT5 Expert Advisor",
       "date": "2026-02",
-      "summary": "A trading bot for MetaTrader 5 that opens trades when fast and slow moving averages cross and RSI confirms the move.",
-      "why": "Object-oriented MQL5 split into small classes (signals, positions, grid, trailing stop, drawdown guard, on-chart dashboard). It checks the trend on three timeframes before every trade.",
       "stack": ["MQL5"],
-      "links": [{ "label": "Source code", "href": "https://forge.mql5.io/TomasVlasak/mql5/src/branch/main/Experts/testRefactor2" }]
+      "href": "https://forge.mql5.io/TomasVlasak/mql5/src/branch/main/Experts/testRefactor2"
     }
   ],
   "stack": [
-    { "label": "Languages", "items": ["typescript", "javascript", "html5", "css"] },
-    { "label": "Frameworks", "items": ["react", "nextdotjs", "nodedotjs", "vite", "tailwindcss"] },
-    { "label": "Services", "items": ["supabase", "stripe", "vercel", "cloudflare"] },
-    { "label": "Tools", "items": ["git", "github", "docker", "npm"] }
+    { "key": "stack.languages", "items": ["typescript", "javascript", "html5", "css"] },
+    { "key": "stack.frameworks", "items": ["react", "nextdotjs", "nodedotjs", "vite", "tailwindcss"] },
+    { "key": "stack.services", "items": ["supabase", "stripe", "vercel", "cloudflare"] },
+    { "key": "stack.tools", "items": ["git", "github", "docker", "npm"] }
   ]
 }
