@@ -4,15 +4,9 @@ My personal portfolio: plain HTML and CSS, no framework, no runtime dependencies
 
 ## Edit the content
 
-Everything you'd want to change lives in **`content.json`**: the intro status line, email, LinkedIn, the featured projects and the stack list.
+Everything you'd want to change lives in **`content.json`**: your role, the key facts at the top, the link tiles, featured projects and the tech stack. Icons are names from `data/icons.json` (brand logos from [Simple Icons](https://simpleicons.org), CC0) or one of `mail`, `terminal`, `pin`, `clock`, `book`.
 
-Any value starting with `TODO:` shows up on the page as a yellow highlight, and the build lists every one that's left:
-
-```bash
-npm run check   # lists placeholders, fails if any remain
-```
-
-Design (colours, fonts, spacing) is in `src/styles.css`; the page structure is `src/index.html`.
+Design (colours, fonts, spacing) is in `src/styles.css`; the page structure is `src/index.html`. The mascot is `src/beaver.svg`, also used as the favicon.
 
 ## Run it locally
 
@@ -43,13 +37,6 @@ One-time setup:
 5. Visit **https://tomasvlasakdev.github.io**.
 
 After that, every push to `main` redeploys automatically, and the site also rebuilds every Monday so project dates stay current.
-
-## Before you share it
-
-- [ ] Fill in every `TODO:` in `content.json` (`npm run check` shows them)
-- [ ] Copy `profile-README.md` into your `tomasvlasakdev/tomasvlasakdev` repo as `README.md`
-- [ ] Add the site URL to your GitHub profile (Edit profile → Website)
-- [ ] Fix the `calorie_tracker` README: it still says Prisma and SQLite, but the app uses Supabase
 
 ## Credits
 
