@@ -1,0 +1,13 @@
+{
+  "name": "tomasvlasakdev.github.io",
+  "description": "Personal portfolio of Tomáš Vlasák",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:offline": "node scripts/build.mjs --offline",
+    "check": "node scripts/build.mjs --offline --strict",
+    "start": "node scripts/build.mjs && node scripts/serve.mjs 8080",
+    "serve": "node scripts/serve.mjs 8080"
+  },
+  "private": true,
+  "type": "module"
+}

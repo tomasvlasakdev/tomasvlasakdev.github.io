@@ -1,0 +1,113 @@
+{
+  "githubUser": "tomasvlasakdev",
+  "_note": "Edit this file (content.json) to change what the site shows. Any text starting with 'TODO:' is rendered as a highlighted placeholder and listed by `npm run build`. For GitHub repos, 'date' and 'stars' come from the GitHub API at build time; for everything else set 'date' yourself as YYYY-MM.",
+  "site": {
+    "url": "https://tomasvlasakdev.github.io/",
+    "status": "TODO: Say what you're looking for, e.g. \"Open to internships and small website projects.\" Or delete this line.",
+    "email": "TODO: your-email@example.com",
+    "linkedin": "TODO: https://www.linkedin.com/in/your-profile (or delete)"
+  },
+  "featured": [
+    {
+      "repo": "cointrack",
+      "title": "CoinTrack",
+      "summary": "A crypto portfolio tracker: log your buys and sells, then see what your holdings are worth today and how much you've gained or lost.",
+      "why": "Pulls live prices from the CoinGecko API, charts portfolio value over time with Chart.js, and keeps accounts safe with hashed passwords and prepared SQL statements throughout.",
+      "stack": [
+        "PHP 8",
+        "MySQL",
+        "JavaScript",
+        "Chart.js"
+      ],
+      "links": [
+        {
+          "label": "Source code",
+          "href": "https://github.com/tomasvlasakdev/cointrack"
+        }
+      ]
+    },
+    {
+      "repo": "calorie_tracker",
+      "title": "Calorie Tracker",
+      "summary": "Log what you eat, set a daily calorie goal, and see how the last seven days went.",
+      "why": "A full-stack TypeScript app on the Next.js App Router, with Supabase for sign-in and storage and Recharts for the weekly report.",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Supabase",
+        "Tailwind CSS"
+      ],
+      "links": [
+        {
+          "label": "Source code",
+          "href": "https://github.com/tomasvlasakdev/calorie_tracker"
+        }
+      ]
+    },
+    {
+      "title": "Čelákovice parish website",
+      "date": "TODO: month you last updated the site, as YYYY-MM (e.g. 2026-10)",
+      "summary": "TODO: One line on what the site does for the parish, e.g. service times, news and events for the Catholic parish in Čelákovice.",
+      "why": "TODO: Why it's interesting, e.g. it's a real site that real people use every week, which you designed, built and still maintain.",
+      "stack": [
+        "TODO: what you built it with, e.g. WordPress, HTML, CSS"
+      ],
+      "links": [
+        {
+          "label": "Visit the site",
+          "href": "TODO: https://the-parish-site-url"
+        }
+      ]
+    },
+    {
+      "title": "MT5 Expert Advisor",
+      "date": "2026-02",
+      "summary": "A trading bot for MetaTrader 5 that opens trades when fast and slow moving averages cross and RSI confirms the move.",
+      "why": "Written as object-oriented MQL5 split into small classes (signals, positions, grid, trailing stop, drawdown guard, on-chart dashboard), and it checks the trend on H1 plus two more timeframes before every trade.",
+      "stack": [
+        "MQL5",
+        "Object-oriented design",
+        "Algorithmic trading"
+      ],
+      "links": [
+        {
+          "label": "Source code",
+          "href": "https://forge.mql5.io/TomasVlasak/mql5/src/branch/main/Experts/testRefactor2"
+        }
+      ]
+    }
+  ],
+  "stack": [
+    {
+      "label": "Languages",
+      "items": [
+        "PHP",
+        "TypeScript",
+        "JavaScript",
+        "SQL",
+        "MQL5",
+        "HTML and CSS"
+      ]
+    },
+    {
+      "label": "Frameworks and libraries",
+      "items": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "Chart.js",
+        "Recharts"
+      ]
+    },
+    {
+      "label": "Data and services",
+      "items": [
+        "MySQL",
+        "Supabase",
+        "CoinGecko API",
+        "Git and GitHub"
+      ]
+    }
+  ]
+}
