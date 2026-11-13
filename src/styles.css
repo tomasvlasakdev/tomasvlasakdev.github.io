@@ -180,7 +180,29 @@ a:hover { color: var(--accent); text-decoration-thickness: 0.14em; }
   height: auto;
   border-radius: 24%;
   box-shadow: 0 0 0 1px var(--rule);
-  image-rendering: pixelated;
+  aspect-ratio: 1;
+  display: block;
+  overflow: hidden;
+}
+
+/* The beaver moves in whole-pixel steps so it stays crisp: it peeks into its frame on load,
+   blinks and twitches an ear while idle, and gnaws (teeth chatter, wood chips) on hover or tap. */
+.b-chip { opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .b-all { animation: peek 1.1s steps(11) .5s both; }
+  .b-eyes { transform-origin: 0 10px; animation: blink 4.5s step-end 2s infinite; }
+  .b-ear { animation: twitch 5.5s step-end 1s infinite; }
+  .avatar.is-gnawing .b-teeth { animation: chomp .24s step-end infinite; }
+  .avatar.is-gnawing .b-chip { animation: chip 1s steps(4) var(--d) infinite; }
+  @media (hover: hover) {
+    .avatar:hover .b-teeth { animation: chomp .24s step-end infinite; }
+    .avatar:hover .b-chip { animation: chip 1s steps(4) var(--d) infinite; }
+  }
+  @keyframes peek { from { transform: translateY(12px); } }
+  @keyframes blink { 0%, 92%, 96% { transform: none; } 93%, 95% { transform: scaleY(.5); } 94% { transform: scaleY(0); } }
+  @keyframes twitch { 0%, 70%, 72%, 74% { transform: none; } 71%, 73% { transform: translateY(-1px); } }
+  @keyframes chomp { 50% { transform: translateY(-1px); } }
+  @keyframes chip { from { opacity: 1; } to { opacity: 1; transform: translate(var(--dx), 4px); } }
 }
 
 /* ---------- Key facts ---------- */

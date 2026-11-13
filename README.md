@@ -6,7 +6,7 @@ My personal portfolio: plain HTML and CSS, no framework, no runtime dependencies
 
 - **Text** lives in `i18n/<language>.json`, one file per language with the same keys. English (`en.json`) is the fallback for any missing key.
 - **Everything else** (links, projects, the tech stack, the list of languages) lives in `content.json`. Icons are names from `data/icons.json` (brand logos from [Simple Icons](https://simpleicons.org), CC0) or one of `mail`, `terminal`, `pin`, `clock`, `book`.
-- Design is in `src/styles.css`, page structure in `src/index.html`. The mascot is `src/beaver.svg`, also used as the favicon.
+- Design is in `src/styles.css`, page structure in `src/index.html`. The mascot is `src/beaver.svg`, also used as the favicon. On the page it is inlined so CSS can animate it (peek in, blink, ear twitch, gnaw on hover/tap); the build splits it into parts by colour, so keep the same palette if you redraw it.
 
 ## Languages
 

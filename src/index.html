@@ -55,7 +55,7 @@
         <h1 class="name"><span>Tomáš</span> <span>Vlasák</span></h1>
         <p class="role">{{t:role}}</p>
       </div>
-      <img class="avatar reveal" style="--i:1" src="/beaver.svg" width="144" height="144" alt="{{t:ui.avatarAlt}}">
+      {{AVATAR}}
     </header>
 
     <ul class="info reveal" style="--i:2" aria-label="{{t:ui.aboutMe}}">
@@ -144,6 +144,14 @@
     });
     document.addEventListener("click", function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menu.open) { menu.open = false; menu.querySelector("summary").focus(); } });
+
+    // Tapping the beaver makes it gnaw (mouse users get this on hover, via CSS).
+    var beaver = document.querySelector(".avatar"), gnawing;
+    beaver.addEventListener("click", function () {
+      beaver.classList.add("is-gnawing");
+      clearTimeout(gnawing);
+      gnawing = setTimeout(function () { beaver.classList.remove("is-gnawing"); }, 1600);
+    });
 
     // Live local time in the Czech Republic, in the page's language.
     var clock = document.querySelector("[data-clock]");

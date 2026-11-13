@@ -111,6 +111,35 @@ const css = (await readFile(src("styles.css"), "utf8"))
   .trim();
 const template = await readFile(src("index.html"), "utf8");
 
+// The mascot is inlined (not an <img>) so CSS can animate its parts: the eyes blink,
+// an ear twitches, the teeth gnaw. src/beaver.svg stays the single source of the art.
+const beaverSvg = await readFile(src("beaver.svg"), "utf8");
+const FUR = "#A0602F", EYE = "#2B1A12", EAR = "#74401C", TEETH = ["#FFFDF7", "#DDD2BC"];
+const parts = { ear: [], teeth: [], body: [], eyes: [] };
+let bg = "";
+for (const m of beaverSvg.matchAll(/<rect\b[^>]*\/>/g)) {
+  const r = m[0];
+  const at = (a) => (r.match(new RegExp(`\\b${a}="([^"]*)"`)) || [])[1];
+  const x = Number(at("x") ?? 0), y = Number(at("y") ?? 0), fill = at("fill");
+  if (at("width") === "20") { bg = r; continue; }
+  if (TEETH.includes(fill)) parts.teeth.push(r);
+  else if (fill === EYE && (y === 8 || y === 9)) {
+    parts.eyes.push(r);
+    parts.body.push(r.replace(EYE, FUR)); // fur under the eye, seen when it closes
+  } else {
+    if (fill === EAR && y === 4 && x >= 10) parts.ear.push(r); // copy that pops up to twitch
+    parts.body.push(r);
+  }
+}
+if (!bg || Object.values(parts).some((p) => !p.length)) throw new Error("src/beaver.svg no longer matches the avatar animation");
+const chips = [[8, "#C98F5A"], [11, "#E0B07E"], [9, "#C98F5A"], [10, "#E0B07E"]]
+  .map(([x, c], i) => `<rect class="b-chip" style="--d:${i * 0.25}s;--dx:${i % 2 ? 2 : -2}px" x="${x}" y="16" width="1" height="1" fill="${c}"/>`)
+  .join("");
+const avatar = (alt) =>
+  `<svg class="avatar reveal" style="--i:1" viewBox="0 0 20 20" width="144" height="144" shape-rendering="crispEdges" role="img" aria-label="${esc(alt)}">` +
+  `${bg}<g class="b-all"><g class="b-ear">${parts.ear.join("")}</g><g class="b-teeth">${parts.teeth.join("")}</g>` +
+  `${parts.body.join("")}<g class="b-eyes">${parts.eyes.join("")}</g>${chips}</g></svg>`;
+
 // ---------- Render one language ----------
 function render(lang) {
   const t = (k) => tr(lang, k);
@@ -188,6 +217,7 @@ function render(lang) {
     OG_LOCALE: ogLocale[lang] || lang,
     ALTERNATES: alternates,
     REDIRECT: lang === DEFAULT ? redirectScript : "",
+    AVATAR: avatar(t("ui.avatarAlt")),
     EMAIL: esc(site.email),
     INFO: info,
     LINKS: links,
