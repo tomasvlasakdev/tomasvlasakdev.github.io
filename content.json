@@ -1,6 +1,6 @@
 {
   "githubUser": "tomasvlasakdev",
-  "_note": "Data that's the same in every language lives here. All visible text lives in i18n/<language>.json; keys referenced here (like info.build) are looked up there. For GitHub repos the date comes from the GitHub API at build time; for anything else set 'date' yourself as YYYY-MM. Icons are names from data/icons.json (brand logos) or one of: mail, terminal, pin, clock, book.",
+  "_note": "Data that's the same in every language lives here. site.url and site.email are the only place the site address and contact email are set ({email} in a link is replaced with site.email). All visible text lives in i18n/<language>.json; keys referenced here (like info.build) are looked up there. For GitHub repos the date comes from the GitHub API at build time; for anything else set 'date' yourself as YYYY-MM. Icons are names from data/icons.json (brand logos) or one of: mail, terminal, pin, clock, book.",
   "site": {
     "url": "https://tomasvlasakdev.github.io/",
     "email": "vlasaktomas.cz@gmail.com",
@@ -25,7 +25,7 @@
     { "label": "GitHub", "handle": "@tomasvlasakdev", "href": "https://github.com/tomasvlasakdev", "icon": "github" },
     { "label": "Instagram", "handle": "@the_tvlasak", "href": "https://www.instagram.com/the_tvlasak", "icon": "instagram" },
     { "label": "Telegram", "handle": "@tomasvlasakdev", "href": "https://t.me/tomasvlasakdev", "icon": "telegram" },
-    { "labelKey": "links.email", "handleKey": "links.emailHandle", "href": "mailto:vlasaktomas.cz@gmail.com", "icon": "mail" }
+    { "labelKey": "links.email", "handleKey": "links.emailHandle", "href": "mailto:{email}", "icon": "mail" }
   ],
   "featured": [
     {

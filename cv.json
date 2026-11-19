@@ -1,0 +1,161 @@
+{
+  "_note": "Single source for the CV page (/cv/ in English, /cs/cv/ in Czech). Other site languages show the English CV. The site URL and email come from content.json (site.url, site.email). The PDFs go in src/cv/ (see the README there).",
+  "links": [
+    { "label": "GitHub", "text": "github.com/tomasvlasakdev", "href": "https://github.com/tomasvlasakdev", "icon": "github" },
+    { "label": "LinkedIn", "text": "linkedin.com/in/tomas-vlasak", "href": "https://www.linkedin.com/in/tomas-vlasak", "icon": "link" }
+  ],
+  "pdf": {
+    "en": "/cv/Tomas_Vlasak_CV_EN.pdf",
+    "cs": "/cv/Tomas_Vlasak_CV_CS.pdf"
+  },
+  "skills": [
+    { "id": "languages", "items": ["TypeScript", "JavaScript", "PHP", "Python", "HTML", "CSS"] },
+    { "id": "frameworks", "items": ["React", "Next.js", "Node.js", "Vite", "Tailwind CSS"] },
+    { "id": "data", "items": ["MySQL", "Supabase", "Stripe", "Vercel", "Cloudflare"] },
+    { "id": "tools", "items": ["Git", "GitHub", "Docker", "npm"] }
+  ],
+  "en": {
+    "updated": "November 2026",
+    "ui": {
+      "title": "Tomáš Vlasák, CV",
+      "description": "CV of Tomáš Vlasák, Application Development student and full-stack developer: experience, skills, education and awards.",
+      "skip": "Skip to CV",
+      "download": "Download PDF",
+      "downloadNote": "PDF, English",
+      "email": "Email",
+      "location": "Location",
+      "updated": "Updated",
+      "skillsGroups": { "languages": "Languages", "frameworks": "Frameworks", "data": "Data and services", "tools": "Tools" }
+    },
+    "h": {
+      "profile": "Profile",
+      "experience": "Experience",
+      "skills": "Skills",
+      "softSkills": "Soft skills",
+      "education": "Education",
+      "languages": "Languages",
+      "awards": "Awards and activities"
+    },
+    "role": "Full-stack developer",
+    "subtitle": "Student of Application Development",
+    "location": "Čelákovice, Czech Republic",
+    "profile": [
+      "Application Development student and full-stack developer.",
+      "I build web apps in TypeScript, React and Next.js and work in teams."
+    ],
+    "experience": [
+      {
+        "org": "TopTrans EU",
+        "role": "Member of a team of 5 developers",
+        "details": "School work placement, June and September 2026 (6 weeks)",
+        "text": "We built two complete web applications that save the company time and automate many tasks employees used to do by hand."
+      },
+      {
+        "org": "Parish website, Čelákovice",
+        "link": { "text": "farnostcelakovice.net", "href": "https://farnostcelakovice.net" },
+        "role": "Author and developer",
+        "details": "Volunteer, over 100 hours of work",
+        "text": "Built the website of my home-town parish for free as the only developer, in the Next.js framework. User testing was carried out with three parishioners and the priest."
+      },
+      {
+        "org": "Teamy",
+        "role": "Team lead",
+        "details": "School project, 3 people, about 50 hours",
+        "text": "Web app where an organisation shares tasks among its members. PHP, JavaScript, HTML, CSS."
+      }
+    ],
+    "softSkills": [
+      { "name": "Team leadership", "text": "I led a team of three. I try to support members rather than criticise them." },
+      { "name": "Teamwork", "text": "I have worked in teams of 3 to 5 people. I know how a team works, how to motivate people and how to organise the work." },
+      { "name": "Time management", "text": "Besides school, I do the DofE programme and my own projects. I organise my time so that school and my extra activities each get enough room and none of them is rushed." },
+      { "name": "Perseverance", "text": "I finish what I start. I stay with the things I enjoy for the long run." }
+    ],
+    "education": [
+      { "name": "Secondary Technical School at Prosek (SPŠ na Proseku)", "details": "Application Development, 2023 – present (year 3)" },
+      { "name": "Gymnázium prof. Jana Patočky", "details": "2019 – 2023" },
+      { "name": "Language stays", "details": "Brighton, 2025 (3 weeks); San Francisco, 2026 (1 month)" }
+    ],
+    "languages": [
+      { "name": "Czech", "level": "Native" },
+      { "name": "English", "level": "C2 (Cambridge certificate)" },
+      { "name": "German", "level": "A2" }
+    ],
+    "awards": [
+      { "name": "French horn, 9 years", "details": "1st place, national round of chamber music; 1st place, orchestra category; many concerts" },
+      { "name": "Winner of the school round of BEST IN ENGLISH", "details": "2025, 79 students" },
+      { "name": "DofE programme, Silver level", "details": "In progress" }
+    ]
+  },
+  "cs": {
+    "updated": "listopad 2026",
+    "ui": {
+      "title": "Tomáš Vlasák, životopis",
+      "description": "Životopis Tomáše Vlasáka, studenta oboru Vývoj aplikací a full-stack vývojáře: zkušenosti, dovednosti, vzdělání a ocenění.",
+      "skip": "Přejít na životopis",
+      "download": "Stáhnout PDF",
+      "downloadNote": "PDF, česky",
+      "email": "E-mail",
+      "location": "Místo",
+      "updated": "Aktualizováno",
+      "skillsGroups": { "languages": "Jazyky", "frameworks": "Frameworky", "data": "Data a služby", "tools": "Nástroje" }
+    },
+    "h": {
+      "profile": "Profil",
+      "experience": "Zkušenosti",
+      "skills": "Dovednosti",
+      "softSkills": "Soft skills",
+      "education": "Vzdělání",
+      "languages": "Jazyky",
+      "awards": "Ocenění a aktivity"
+    },
+    "role": "Full-stack vývojář",
+    "subtitle": "Student oboru Vývoj aplikací",
+    "location": "Čelákovice, Česko",
+    "profile": [
+      "Student oboru Vývoj aplikací a full-stack vývojář.",
+      "Stavím webové aplikace v TypeScriptu, Reactu a Next.js a pracuji v týmech."
+    ],
+    "experience": [
+      {
+        "org": "TopTrans EU",
+        "role": "Člen týmu pěti vývojářů",
+        "details": "Školní odborná praxe, červen a září 2026 (6 týdnů)",
+        "text": "Vytvořili jsme dvě kompletní webové aplikace, které firmě šetří čas a automatizují řadu úkolů, jež zaměstnanci dosud dělali ručně."
+      },
+      {
+        "org": "Web farnosti Čelákovice",
+        "link": { "text": "farnostcelakovice.net", "href": "https://farnostcelakovice.net" },
+        "role": "Autor a vývojář",
+        "details": "Dobrovolně, přes 100 hodin práce",
+        "text": "Web pro farnost v rodném městě jsem jako jediný vývojář vytvořil zdarma ve frameworku Next.js. Uživatelské testování probíhalo s třemi farníky a knězem."
+      },
+      {
+        "org": "Teamy",
+        "role": "Vedoucí týmu",
+        "details": "Školní projekt, 3 lidé, zhruba 50 hodin",
+        "text": "Webová aplikace, v níž organizace sdílí úkoly mezi členy. PHP, JavaScript, HTML, CSS."
+      }
+    ],
+    "softSkills": [
+      { "name": "Vedení týmu", "text": "Vedl jsem tříčlenný tým. Členy se snažím místo kritizování podporovat." },
+      { "name": "Spolupráce", "text": "Pracoval jsem v týmech o 3 až 5 lidech. Vím, jak to v týmu chodí, jak lidi motivovat a jak organizovat práci." },
+      { "name": "Plánování času", "text": "Vedle školy se věnuji programu DofE a vlastním projektům. Čas si rozvrhuji tak, aby škola i aktivity navíc dostaly dost prostoru a nic z toho nebylo odbyté." },
+      { "name": "Vytrvalost", "text": "Práci, kterou začnu, dotahuji do konce. Dlouhodobě se držím věcí, které mě baví." }
+    ],
+    "education": [
+      { "name": "Střední průmyslová škola na Proseku", "details": "Vývoj aplikací, 2023 – současnost (3. ročník)" },
+      { "name": "Gymnázium prof. Jana Patočky", "details": "2019 – 2023" },
+      { "name": "Jazykové pobyty", "details": "Brighton, 2025 (3 týdny); San Francisco, 2026 (1 měsíc)" }
+    ],
+    "languages": [
+      { "name": "Čeština", "level": "Rodilý mluvčí" },
+      { "name": "Angličtina", "level": "C2 (Cambridge certifikát)" },
+      { "name": "Němčina", "level": "A2" }
+    ],
+    "awards": [
+      { "name": "Hra na lesní roh, 9 let", "details": "1. místo v celostátním kole komorní hry; 1. místo v kategorii orchestr; řada koncertů" },
+      { "name": "Vítěz školního kola BEST IN ENGLISH", "details": "2025, 79 žáků školy" },
+      { "name": "Program DofE, stříbrná úroveň", "details": "Rozpracováno" }
+    ]
+  }
+}

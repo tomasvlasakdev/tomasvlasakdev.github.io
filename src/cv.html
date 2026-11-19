@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+{{REDIRECT}}
+<meta name="description" content="{{DESCRIPTION}}">
+<meta name="author" content="Tomáš Vlasák">
+<link rel="canonical" href="{{CANONICAL}}">
+{{ALTERNATES}}
+<meta property="og:type" content="profile">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:image" content="{{SITE_URL}}beaver.png">
+<meta property="og:locale" content="{{OG_LOCALE}}">
+<meta property="profile:first_name" content="Tomáš">
+<meta property="profile:last_name" content="Vlasák">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#f5f5f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1b1f" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/beaver.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/beaver.png">
+<link rel="preload" href="/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  (function () {
+    try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  })();
+</script>
+<script type="application/ld+json">{{JSONLD}}</script>
+<style>{{CSS}}</style>
+</head>
+<body>
+<a class="skip" href="#cv"{{CV_LANG_ATTR}}>{{SKIP}}</a>
+
+<div class="page">
+{{BAR}}
+
+  <main id="cv" class="cv" tabindex="-1"{{CV_LANG_ATTR}}>
+    <header class="cv-head">
+      <h1 class="cv-name">Tomáš Vlasák</h1>
+      <p class="cv-role">{{ROLE}}</p>
+      <p class="cv-subtitle">{{SUBTITLE}}</p>
+      <ul class="cv-contact">
+{{CONTACT}}
+      </ul>
+      <p class="cv-download"><a class="button" href="{{PDF}}" type="application/pdf" download>{{DOWNLOAD_ICON}}{{DOWNLOAD}}<span class="visually-hidden"> ({{DOWNLOAD_NOTE}})</span></a></p>
+    </header>
+
+{{SECTIONS}}
+
+    <p class="cv-updated">{{UPDATED_LABEL}}: {{UPDATED}}</p>
+  </main>
+
+  <footer class="foot">
+    <p>© {{YEAR}} Tomáš Vlasák.</p>
+    <p><a href="https://github.com/tomasvlasakdev/tomasvlasakdev.github.io">{{t:ui.sourceForSite}}</a></p>
+  </footer>
+</div>
+
+<script>{{SITE_JS}}</script>
+</body>
+</html>
