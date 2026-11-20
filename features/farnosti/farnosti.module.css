@@ -1,0 +1,367 @@
+/* Styles for /farnosti only. Uses the global tokens (--accent, --line, …) and nothing else from other pages. */
+
+.page {
+  font-size: 1.1875rem; /* 19px: a touch larger for this audience */
+  line-height: 1.65;
+}
+.page p,
+.page li,
+.page td,
+.page summary,
+.page dd {
+  max-width: 44rem;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding-block: var(--space-6) var(--space-5);
+}
+.hero h1 {
+  max-width: 22ch;
+}
+.lead {
+  font-size: var(--step-1);
+  line-height: 1.55;
+  max-width: 40rem;
+}
+.note {
+  margin-top: var(--space-4);
+  color: var(--muted);
+}
+
+/* ---------- Generic section bits ---------- */
+.sectionLead {
+  font-size: var(--step-1);
+  line-height: 1.55;
+  max-width: 42rem;
+  margin-bottom: var(--space-4);
+}
+.after {
+  margin-top: var(--space-4);
+}
+
+/* ---------- Features ---------- */
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-4);
+  display: grid;
+  gap: var(--space-2) var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+}
+.features li {
+  padding: var(--space-2) 0 var(--space-2) var(--space-3);
+  border-left: 3px solid var(--line);
+}
+.features strong {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ---------- Looks ---------- */
+.looks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 36rem) {
+  .looks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 64rem) {
+  .looks {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.look {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.lookBody {
+  padding: var(--space-3);
+}
+.lookBody h3 {
+  margin-bottom: 0.15rem;
+  font-size: var(--step-2);
+}
+.feel {
+  color: var(--warm);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+.suits {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+/* Swatch: a small CSS-only impression of the look. Slot for a real screenshot later. */
+.swatch {
+  aspect-ratio: 16 / 9;
+  background: var(--sw-bg);
+  color: var(--sw-ink);
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 0.9rem 1rem;
+  gap: 0.5rem;
+}
+.swatchBar {
+  height: 0.55rem;
+  width: 45%;
+  border-radius: 999px;
+  background: var(--sw-accent);
+}
+.swatchSample {
+  font-family: var(--sw-font);
+  font-weight: var(--sw-weight, 700);
+  font-size: 2.75rem;
+  line-height: 1;
+  align-self: center;
+}
+.swatchDots {
+  display: flex;
+  gap: 0.4rem;
+}
+.swatchDots span {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 1px solid rgb(0 0 0 / 0.15);
+}
+
+.seasons {
+  display: inline-flex;
+  gap: 0.35rem;
+  margin-right: 0.6rem;
+  vertical-align: -0.1em;
+}
+.seasons span {
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+  border: 1px solid rgb(0 0 0 / 0.25);
+}
+
+/* ---------- Process ---------- */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: var(--space-2);
+  align-items: start;
+}
+.steps li::before {
+  content: counter(step);
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.steps p {
+  margin: 0.35rem 0 0;
+}
+.steps strong {
+  font-family: var(--font-head);
+  font-size: var(--step-1);
+}
+
+/* ---------- Tables (become stacked cards on narrow screens) ---------- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.table th,
+.table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.table thead th {
+  background: var(--accent-soft);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+}
+.table tbody th {
+  font-weight: 700;
+}
+.table tr:last-child > * {
+  border-bottom: 0;
+}
+.price {
+  white-space: nowrap;
+  font-weight: 700;
+}
+.unit {
+  display: block;
+  font-weight: 400;
+  color: var(--muted);
+  font-size: var(--step--1);
+  white-space: normal;
+}
+
+@media (max-width: 47.99rem) {
+  .table,
+  .table thead,
+  .table tbody,
+  .table tr,
+  .table th,
+  .table td {
+    display: block;
+  }
+  .table {
+    background: transparent;
+    border: 0;
+  }
+  .table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .table tr {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.5rem 1rem;
+  }
+  .table tr + tr {
+    margin-top: var(--space-2);
+  }
+  .table tbody th {
+    font-family: var(--font-head);
+    font-size: var(--step-1);
+    padding: 0.5rem 0;
+  }
+  .table td {
+    padding: 0.35rem 0 0.5rem;
+    border-bottom: 0;
+  }
+  .table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: var(--step--1);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--warm);
+  }
+  .table tbody th {
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+.subheading {
+  margin-top: var(--space-5);
+}
+
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  margin-top: var(--space-3);
+}
+.callout p:last-child {
+  margin-bottom: 0;
+}
+
+.notes {
+  padding-left: 1.2rem;
+  margin-top: var(--space-3);
+}
+
+/* ---------- FAQ ---------- */
+.faq {
+  border-top: 1px solid var(--line);
+  max-width: 48rem;
+}
+.faq details {
+  border-bottom: 1px solid var(--line);
+}
+.faq summary {
+  cursor: pointer;
+  padding: 1rem 2.5rem 1rem 0;
+  font-weight: 700;
+  list-style: none;
+  position: relative;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 0.5rem;
+  top: 0.85rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--accent);
+}
+.faq details[open] summary::after {
+  content: "−";
+}
+.faq details p {
+  padding-bottom: var(--space-2);
+}
+
+/* ---------- Contact ---------- */
+.contact {
+  scroll-margin-top: 1rem;
+}
+
+/* ---------- Sticky mobile button ---------- */
+.sticky {
+  display: none;
+}
+@media (max-width: 47.99rem) {
+  .sticky {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    padding: 0.75rem var(--gutter) calc(0.75rem + env(safe-area-inset-bottom));
+    background: rgb(250 248 244 / 0.97);
+    border-top: 1px solid var(--line);
+  }
+  .sticky a {
+    width: 100%;
+  }
+  /* Reserve room at the end of the page, so the bar never covers the footer. */
+  :global(body):has(.sticky) {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  }
+}
