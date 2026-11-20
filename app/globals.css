@@ -538,22 +538,6 @@ img {
   margin-top: var(--space-5);
 }
 
-/* ---------- Monogram (photo placeholder) ---------- */
-.monogram {
-  width: 7.5rem;
-  height: 7.5rem;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--accent);
-  color: var(--on-accent);
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 2.5rem;
-  letter-spacing: 0.04em;
-  margin-bottom: var(--space-4);
-}
-
 .figure-grid {
   display: grid;
   gap: var(--space-3);
@@ -561,6 +545,21 @@ img {
 }
 .figure-grid figure {
   margin: 0;
+}
+.figure-grid--devices {
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+.figure-grid--devices figure:last-child img {
+  max-width: 16rem;
+}
+@media (min-width: 48rem) {
+  .figure-grid--devices {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  }
+  .figure-grid--devices figure:last-child img {
+    max-width: 100%;
+  }
 }
 .figure-grid img {
   border: 1px solid var(--line);

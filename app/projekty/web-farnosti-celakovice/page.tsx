@@ -45,18 +45,25 @@ export default function CaseStudyPage() {
         ))}
       </div>
 
-      {/* TODO(owner): screenshots slot, rendered once c.screenshots.items has entries. */}
+      {/* Screenshots: rendered only when c.screenshots.items has entries. */}
       {c.screenshots.items.length > 0 && (
         <section className="section section--warm" aria-labelledby="ukazky">
           <div className="wrap">
             <h2 id="ukazky">{c.screenshots.heading}</h2>
-            <div className="figure-grid">
+            <div className="figure-grid figure-grid--devices">
               {c.screenshots.items.map((img) => (
                 <figure key={img.src}>
                   <picture>
                     <source srcSet={`${base}${img.src}.avif`} type="image/avif" />
                     <source srcSet={`${base}${img.src}.webp`} type="image/webp" />
-                    <img src={`${base}${img.src}.webp`} width={img.width} height={img.height} alt={img.alt} loading="lazy" decoding="async" />
+                    <img
+                      src={`${base}${img.src}.webp`}
+                      width={img.width}
+                      height={img.height}
+                      alt={img.alt}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </picture>
                 </figure>
               ))}

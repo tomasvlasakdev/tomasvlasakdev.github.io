@@ -10,6 +10,5 @@ This writes `public/images/<name>.avif` and `public/images/<name>.webp` (max 160
 
 Waiting for (TODO(owner)):
 
-- `celakovice-desktop.png`, `celakovice-phone.png`: two screenshots of farnostcelakovice.net for the case study
 - `tomas.jpg`: photo for /o-mne
 - screenshots of the four looks once the demo site exists

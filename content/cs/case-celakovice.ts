@@ -53,10 +53,20 @@ export const caseCelakovice = typeset({
   ],
   screenshots: {
     heading: "Ukázky",
-    // TODO(owner): two real screenshots of farnostcelakovice.net. Put the source files in
-    // assets/screenshots/, run `npm run images`, then add entries here, e.g.
-    // { src: "/images/celakovice-desktop", width: 1280, height: 800, alt: "…" }.
-    // While the list is empty, the section is not rendered.
-    items: [] as { src: string; width: number; height: number; alt: string }[],
+    // Taken from farnostcelakovice.net on 20. 11. 2026. Sources in assets/images/, run `npm run images` to rebuild.
+    items: [
+      {
+        src: "/images/celakovice-desktop",
+        width: 1600,
+        height: 1000,
+        alt: "Úvodní stránka webu farnosti Čelákovice na počítači: fotografie kostela a nejbližší bohoslužby",
+      },
+      {
+        src: "/images/celakovice-phone",
+        width: 780,
+        height: 1688,
+        alt: "Úvodní stránka webu farnosti Čelákovice na mobilu",
+      },
+    ] as { src: string; width: number; height: number; alt: string }[],
   },
 });
