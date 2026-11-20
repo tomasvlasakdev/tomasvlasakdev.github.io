@@ -6,7 +6,7 @@ export const kontakt = typeset({
     description: "Napište mi e-mail. Pro farnosti stačí název farnosti a počet kostelů.",
   },
   heading: "Napište mi",
-  text: "Pro farnosti: napište název farnosti a počet kostelů. Připravím náhled s vaším názvem a časy bohoslužeb ještě před schůzkou. Pro ostatní stačí stručně popsat, o co jde.",
+  text: "Pro farnosti: napište název farnosti a počet kostelů. Připravím náhled s vaším názvem a časy bohoslužeb ještě před schůzkou. Pokud jde o něco jiného, napište, co potřebujete.",
   emailLabel: "E-mail",
   elsewhereLabel: "Jinde",
 });

@@ -30,6 +30,6 @@ export const home = typeset({
   },
   contact: {
     heading: "Napište mi",
-    text: "Pro farnosti: napište název farnosti a počet kostelů. Pro ostatní stačí stručně popsat, o co jde.",
+    text: "Pro farnosti: napište název farnosti a počet kostelů. Pokud jde o něco jiného, napište, co potřebujete.",
   },
 });
