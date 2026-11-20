@@ -19,14 +19,15 @@ export function FarnostiPage() {
   return (
     <div className={s.page}>
       <Hero />
+      <Motivation />
       <Features />
+      <Editor />
+      <Care />
+      <Ownership />
       <Looks />
       <Process />
-      <Roles />
-      <Ownership />
       {siteConfig.showPrices ? <PriceList /> : <PriceOnRequest />}
       <Faq />
-      <Builder />
       <Contact />
       <div className={s.sticky}>
         <a className="button" href={mailto}>
@@ -55,6 +56,14 @@ function Hero() {
             {hero.contactButton}
           </a>
         </div>
+        <ul className={s.highlights}>
+          {hero.highlights.map((h) => (
+            <li key={h.title}>
+              <strong>{h.title}</strong>
+              <span>{h.text}</span>
+            </li>
+          ))}
+        </ul>
         <p className={s.note}>
           {hero.note.before}
           <a href={hero.note.href}>{hero.note.linkText}</a>
@@ -65,10 +74,32 @@ function Hero() {
   );
 }
 
+function Motivation() {
+  const { motivation } = f;
+  return (
+    <section className="section section--warm" aria-labelledby="proc">
+      <div className={`wrap ${s.story}`}>
+        <div>
+          <h2 id="proc">{motivation.heading}</h2>
+          {motivation.paragraphs.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+          <Link className="text-link" href={motivation.link.href}>
+            {motivation.link.label}
+          </Link>
+        </div>
+        <blockquote className={s.belief}>
+          <p>{motivation.belief}</p>
+        </blockquote>
+      </div>
+    </section>
+  );
+}
+
 function Features() {
   const { features } = f;
   return (
-    <section className="section section--warm" aria-labelledby="co-web-umi">
+    <section className="section" aria-labelledby="co-web-umi">
       <div className="wrap">
         <h2 id="co-web-umi">{features.heading}</h2>
         <ul className={s.features}>
@@ -79,6 +110,41 @@ function Features() {
           ))}
         </ul>
         <p>{features.closing}</p>
+      </div>
+    </section>
+  );
+}
+
+function Editor() {
+  const { editor } = f;
+  return (
+    <section className="section section--warm" aria-labelledby="editor">
+      <div className="wrap">
+        <h2 id="editor">{editor.heading}</h2>
+        <p className={s.sectionLead}>{editor.lead}</p>
+        <ul className={s.checks}>
+          {editor.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <p className={s.after}>{editor.closing}</p>
+      </div>
+    </section>
+  );
+}
+
+function Care() {
+  const { care } = f;
+  return (
+    <section className="section" aria-labelledby="technika">
+      <div className="wrap">
+        <h2 id="technika">{care.heading}</h2>
+        <p className={s.sectionLead}>{care.lead}</p>
+        <ul className={s.chips}>
+          {care.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -161,43 +227,6 @@ function Process() {
             </li>
           ))}
         </ol>
-      </div>
-    </section>
-  );
-}
-
-function Roles() {
-  const { roles } = f;
-  const c = roles.columns;
-  return (
-    <section className="section" aria-labelledby="kdo-co-dela">
-      <div className="wrap">
-        <h2 id="kdo-co-dela">{roles.heading}</h2>
-        <table className={s.table}>
-          <thead>
-            <tr>
-              <th scope="col">{c.task}</th>
-              <th scope="col">{c.who}</th>
-              <th scope="col">{c.when}</th>
-              <th scope="col">{c.how}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {roles.rows.map((r) => (
-              <tr key={r.task}>
-                <th scope="row">{r.task}</th>
-                <td data-label={c.who}>{r.who}</td>
-                <td data-label={c.when}>{r.when}</td>
-                <td data-label={c.how}>{r.how}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <div className={s.callout}>
-          <h3>{roles.editorsHeading}</h3>
-          <p>{roles.editorsText}</p>
-        </div>
       </div>
     </section>
   );
@@ -292,7 +321,7 @@ function PriceOnRequest() {
 function Faq() {
   const { faq } = f;
   return (
-    <section className="section section--warm" aria-labelledby="caste-otazky">
+    <section className="section" aria-labelledby="caste-otazky">
       <div className="wrap">
         <h2 id="caste-otazky">{faq.heading}</h2>
         <div className={s.faq}>
@@ -303,21 +332,6 @@ function Faq() {
             </details>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-function Builder() {
-  const { builder } = f;
-  return (
-    <section className="section" aria-labelledby="kdo-web-stavi">
-      <div className="wrap">
-        <h2 id="kdo-web-stavi">{builder.heading}</h2>
-        <p>{builder.text}</p>
-        <Link className="text-link" href={builder.link.href}>
-          {builder.link.label}
-        </Link>
       </div>
     </section>
   );

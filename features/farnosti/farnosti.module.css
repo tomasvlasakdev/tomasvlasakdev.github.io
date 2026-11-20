@@ -29,6 +29,113 @@
   color: var(--muted);
 }
 
+/* Four short promises under the hero buttons. */
+.highlights {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-5) 0 0;
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+}
+.highlights li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+}
+.highlights strong {
+  display: block;
+  font-family: var(--font-head);
+  font-size: var(--step-1);
+  color: var(--accent);
+}
+.highlights span {
+  display: block;
+  color: var(--muted);
+  font-size: var(--step--1);
+  line-height: 1.45;
+  margin-top: 0.15rem;
+}
+
+/* ---------- Motivation ---------- */
+.story {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+}
+@media (min-width: 60rem) {
+  .story {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  }
+}
+.belief {
+  margin: 0;
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  position: relative;
+}
+.belief::before {
+  content: "„";
+  position: absolute;
+  top: -2.4rem;
+  left: 1.5rem;
+  font-family: var(--font-head);
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--warm);
+}
+.belief p {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: var(--step-1);
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+/* ---------- Editor checklist and care chips ---------- */
+.checks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2) var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+}
+.checks li {
+  position: relative;
+  padding-left: 2rem;
+}
+.checks li::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.35em;
+  width: 0.55rem;
+  height: 0.95rem;
+  border: solid var(--accent);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+.chips {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.chips li {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+}
+
 /* ---------- Generic section bits ---------- */
 .sectionLead {
   font-size: var(--step-1);

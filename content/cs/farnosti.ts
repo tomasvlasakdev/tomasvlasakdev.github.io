@@ -7,21 +7,38 @@ export const farnosti = typeset({
   meta: {
     title: "Weby pro farnosti | Tomáš Vlasák",
     description:
-      "Farní web s bohoslužbami, ohlášky, kalendářem a formulářem na mešní úmysly. Čtyři vzhledy, úpravy z telefonu, provoz a zálohy zajišťuji já. Web i doména patří farnosti.",
+      "Moderní farní web na vlastní doméně: bohoslužby, ohlášky, kalendář a formulář na mešní úmysly. Jednoduchý editor, hosting a zabezpečení zajišťuji já. Web i doména patří farnosti.",
   },
 
   hero: {
     kicker: "Weby pro farnosti",
     heading: "Farní web, o který se postaráte i bez programátora",
-    lead: "Bohoslužby, ohlášky, kalendář i formulář na mešní úmysly jsou hotové. Stačí je naplnit obsahem vaší farnosti. Úpravy zvládnete v prohlížeči i z telefonu. Techniku, zálohy a opravy mám na starosti já.",
+    lead: "Moderní a přehledný web na vlastní doméně vaší farnosti. Bohoslužby, ohlášky, kalendář i formulář na mešní úmysly jsou připravené, stačí je naplnit obsahem. Úpravy zvládnete v jednoduchém editoru z počítače i z telefonu. Hosting, zabezpečení a zálohy mám na starosti já.",
     demoButton: "Prohlédnout ukázkový web",
     contactButton: "Napsat mi",
+    highlights: [
+      { title: "Moderní vzhled", text: "Čtyři hotové vzhledy, vaše barva, logo a fotky." },
+      { title: "Vlastní doména", text: "Web běží na adrese vaší farnosti." },
+      { title: "Na mobilu i tabletu", text: "Stránky se přizpůsobí každé obrazovce." },
+      { title: "Jednoduchý editor", text: "Ohlášky nahrajete za pár minut, i z telefonu." },
+    ],
     note: {
       before: "Web farnosti Čelákovice, který jsem vytvořil, najdete na ",
       linkText: "farnostcelakovice.net",
       href: "https://farnostcelakovice.net",
       after: ".",
     },
+  },
+
+  motivation: {
+    heading: "Proč stavím weby pro farnosti",
+    paragraphs: [
+      "V naší farnosti v Čelákovicích jsem dobrovolně převzal úkol udělat nový web. Jsem farník, takže farní život znám zevnitř: vím, kdy lidé hledají čas mše, s čím chodí do farní kanceláře a co všechno musí pan farář zvládnout vedle duchovní služby.",
+      "Celý vývoj mě bavil, protože jsem stavěl něco, co lidé opravdu každý týden používají. Web jsem vyzkoušel s farníky a s panem farářem, opravil jsem, co nefungovalo, a farnost ho dnes používá. Ta práce mě začala naplňovat natolik, že jsem se rozhodl stavět weby i pro další farnosti v Česku.",
+    ],
+    belief:
+      "Věřím, že přehledný web, kde farníci najdou všechno na jednom místě, jim usnadní orientaci ve farním životě a přispěje k dobré atmosféře ve farnosti. Web je také první, co o farnosti uvidí člověk zvenku. Dobře udělané stránky ji důstojně reprezentují, mohou přivést do kostela i ty, kdo farnost zatím neznají, a slouží jako tichý prostředek evangelizace.",
+    link: { label: "Jak vznikal web farnosti Čelákovice", href: "/projekty/web-farnosti-celakovice/" },
   },
 
   features: {
@@ -45,7 +62,43 @@ export const farnosti = typeset({
       { title: "Společenství.", text: "Pravidelné aktivity a setkání." },
     ],
     closing:
-      "Web je rychlý, zabezpečený a dobře vypadá i na mobilu. Farář, který spravuje více farností, je může mít na jednom webu.",
+      "Web je rychlý, zabezpečený a dobře vypadá na mobilu, tabletu i počítači. Farář, který spravuje více farností, je může mít na jednom webu.",
+  },
+
+  editor: {
+    heading: "Jednoduchý editor obsahu",
+    lead: "Obsah webu upravujete v editoru, který běží v prohlížeči. Nemusíte nic instalovat ani umět programovat a zvládnete to z počítače i z telefonu.",
+    items: [
+      "Nedělní ohlášky nahrajete jako PDF za pár minut.",
+      "Aktualitu napíšete přímo v editoru a přidáte k ní fotky.",
+      "Pořad bohoslužeb, výjimky a kontakty upravíte v přehledném formuláři.",
+      "Akce stačí zapsat do Google Kalendáře, web se aktualizuje sám.",
+    ],
+    closing: "Po spuštění vás editorem provedu a dostanete krátký návod na jednu stránku.",
+  },
+
+  care: {
+    heading: "O techniku se postarám já",
+    lead: "Nemusíte řešit nic technického. Web běží spolehlivě a bezpečně, a když se něco pokazí, opravím to.",
+    items: [
+      "Hosting webu",
+      "Doména farnosti",
+      "Farní e-mail",
+      "SSL certifikát",
+      "Zabezpečení",
+      "Pravidelné zálohy",
+      "Aktualizace a opravy",
+      "Přístup pro správce farnosti",
+    ],
+  },
+
+  ownership: {
+    heading: "Web patří farnosti",
+    paragraphs: [
+      "Web, doména i účet u poskytovatele hostingu jsou vedené na farnost. Ke všemu máte přístup a dostanete i zdrojový kód webu.",
+      "Pokud se rozhodnete moje služby dál nevyužívat, web zůstane a poběží dál na účtu farnosti. Přijdete jen o aktualizace a pomoc. Slibuji to ve smlouvě.",
+      "K webu dostanete předávací list s adresami, přístupy a postupem, co dělat při poruše.",
+    ],
   },
 
   looks: {
@@ -97,62 +150,17 @@ export const farnosti = typeset({
       },
       {
         title: "Schůzka.",
-        text: "Za hodinu až hodinu a půl projdeme čtyři vzhledy, vyberete barvu, podepíšeme dohodu a určíte dva lidi, kteří budou web upravovat.",
+        text: "Za hodinu až hodinu a půl projdeme vzhledy, vyberete barvu, domluvíme, kdo bude web upravovat, a podepíšeme dohodu.",
       },
       {
         title: "Spuštění.",
-        text: "Web nastavím a propojím kalendář a farní e-mail. Obsah doplníte vy, nebo ho za vás přenesu ze starého webu.",
+        text: "Web nastavím na doméně farnosti a propojím kalendář a farní e-mail. Obsah doplníte vy, nebo ho za vás přenesu ze starého webu.",
       },
       {
         title: "Zaškolení.",
-        text: "Za 45 minut správci nahrají první skutečné ohlášky, zatímco se jim dívám přes rameno. Dostanou tahák na jednu stránku a krátká videa k jednotlivým úkolům.",
+        text: "Za 45 minut s vámi nahrajeme první skutečné ohlášky. Dostanete tahák na jednu stránku a krátká videa k jednotlivým úkolům.",
       },
       { title: "Po měsíci.", text: "Ozvu se, jak web funguje, a opravím, co se ukázalo." },
-    ],
-  },
-
-  roles: {
-    heading: "Kdo co dělá",
-    columns: { task: "Úkol", who: "Kdo", when: "Jak často", how: "Jak" },
-    rows: [
-      {
-        task: "Ohlášky",
-        who: "správce z farnosti",
-        when: "každý týden",
-        how: "nahrání PDF v prohlížeči, asi 5 minut",
-      },
-      {
-        task: "Akce",
-        who: "kdokoli, kdo už používá farní kalendář",
-        when: "podle potřeby",
-        how: "Google Kalendář v telefonu, web se aktualizuje sám",
-      },
-      { task: "Aktuality", who: "správce z farnosti", when: "několikrát měsíčně", how: "v prohlížeči" },
-      {
-        task: "Bohoslužby a kontakty",
-        who: "správce z farnosti, nebo já",
-        when: "několikrát ročně",
-        how: "v prohlížeči",
-      },
-      {
-        task: "Hosting, zálohy, aktualizace, doména, opravy",
-        who: "já",
-        when: "průběžně",
-        how: "součást péče o web",
-      },
-      { task: "Nové funkce a změny vzhledu", who: "já", when: "na požádání", how: "hodinově" },
-    ],
-    editorsHeading: "Dva správci obsahu",
-    editorsText:
-      "Před spuštěním potřebuji od farnosti jména dvou lidí, kteří budou web upravovat. Nejlépe je osloví osobně pan farář. Já mu řeknu, koho a o co. Úkol je malý: v pátek nahrát nedělní ohlášky, zabere to asi 5 minut. Zkusit to můžete na tři měsíce a pak se rozhodnete. Kdyby se nikdo nenašel, mohu obsah doplňovat za vás.",
-  },
-
-  ownership: {
-    heading: "Web patří farnosti",
-    paragraphs: [
-      "Web i doména patří farnosti. Účet u poskytovatele hostingu zakládáme na e-mail farnosti a já k němu mám přístup jako správce. Farnost má také k dispozici zdrojový kód svého webu.",
-      "Pokud farnost přestane za péči platit, web běží dál na jejím vlastním účtu. Přijde jen o aktualizace a pomoc. Slibuji to ve smlouvě.",
-      "K webu dostanete předávací list s adresami, přístupy a postupem, co dělat při poruše.",
     ],
   },
 
@@ -180,6 +188,10 @@ export const farnosti = typeset({
   faq: {
     heading: "Časté otázky",
     items: [
+      {
+        q: "Kdo bude web upravovat?",
+        a: "Kdokoli, koho farnost určí: pan farář, někdo z farní kanceláře nebo farník, který má chuť pomoct. Editor zvládne i člověk bez technických znalostí.",
+      },
       {
         q: "Co když web nikdo z farnosti upravovat nebude?",
         a: "Obsah mohu doplňovat za vás: každý týden nahrát ohlášky a přidávat aktuality. Je to placená služba.",
@@ -210,12 +222,6 @@ export const farnosti = typeset({
         a: "Web běží na účtu farnosti a farnost má zdrojový kód. Nový správce ho může převzít bez mé pomoci.",
       },
     ],
-  },
-
-  builder: {
-    heading: "Kdo web staví",
-    text: "Jsem Tomáš Vlasák, farník z Čelákovic a student střední průmyslové školy. Web farnosti Čelákovice jsem vytvořil sám. Zkoušeli ho tři farníci a pan farář a jejich připomínky jsem opravil. Teď z něj dělám stavebnici, aby ho mohly mít i další farnosti.",
-    link: { label: "Přečíst případovou studii", href: "/projekty/web-farnosti-celakovice/" },
   },
 
   contact: {

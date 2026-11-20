@@ -28,7 +28,8 @@ export const siteConfig = {
   foundingOffer: false,
 
   parish: {
-    // TODO(owner): demo site URL. While empty, every demo button and link is hidden.
+    // TODO(owner): set to "https://demo.tomasvlasak.dev" once the domain is bought and the demo is live.
+    // While empty, every demo button and link is hidden.
     demoUrl: "",
   },
 
