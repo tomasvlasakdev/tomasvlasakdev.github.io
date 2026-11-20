@@ -117,7 +117,7 @@ export const farnosti = typeset({
       },
       {
         title: "Příprava obsahu",
-        text: "Přenesu obsah ze starého webu a texty projdeme spolu. Každý týden vám pošlu odkaz na rozpracovaný web.",
+        text: "Přenesu obsah ze starého webu a texty projdeme spolu. Průběžně uvidíte, jak web vzniká.",
       },
       { title: "Schválení", text: "Web spustíme, až ho schválíte." },
       { title: "Spuštění a zaškolení", text: "Web spustím na doméně farnosti a správce za 45 minut zaškolím." },
