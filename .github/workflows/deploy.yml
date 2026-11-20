@@ -1,42 +1,54 @@
-name: Deploy to GitHub Pages
+name: Check and deploy
 
 on:
   push:
-    branches: [main]
-  # Rebuild every Monday so project dates and stars stay current.
-  schedule:
-    - cron: "17 6 * * 1"
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  NEXT_PUBLIC_SITE_URL: https://tomasvlasakdev.github.io
+  NEXT_PUBLIC_BASE_PATH: ""
+  NEXT_TELEMETRY_DISABLED: 1
+
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Build site
-        run: node scripts/build.mjs
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/configure-pages@v5
+          cache: npm
+      - run: npm ci
+      - name: Type-check
+        run: npm run typecheck
+      - name: Build
+        run: npm run build
+      - name: Link check
+        run: npm run check:links
+      - name: Install Chromium for axe
+        run: npx playwright install --with-deps chromium
+      - name: Accessibility (axe)
+        run: npm run check:axe
       - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
-          path: dist
+          path: out
 
   deploy:
-    needs: build
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

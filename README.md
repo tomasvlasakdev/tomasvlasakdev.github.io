@@ -1,51 +1,69 @@
 # tomasvlasakdev.github.io
 
-My personal portfolio: plain HTML and CSS, no framework, no runtime dependencies. A small Node script builds the page from `content.json` and pulls each project's last-updated date and star count from the GitHub API.
+Personal site of Tomáš Vlasák: websites for Catholic parishes first, portfolio second. Czech only for now.
 
-## Edit the content
+Static Next.js (`output: 'export'`), TypeScript, plain CSS. No backend, no cookies, no third-party scripts, self-hosted fonts.
 
-- **Text** lives in `i18n/<language>.json`, one file per language with the same keys. English (`en.json`) is the fallback for any missing key.
-- **Everything else** (links, projects, the tech stack, the list of languages) lives in `content.json`. Icons are names from `data/icons.json` (brand logos from [Simple Icons](https://simpleicons.org), CC0) or one of `mail`, `terminal`, `pin`, `clock`, `book`.
-- **The CV** (`/cv/`, `/cs/cv/`) is rendered from `cv.json`, which has the English and Czech text and the "updated" date. Other languages show the English CV. The PDFs for the download buttons go in `src/cv/`.
-- The site address and contact email are set only in `site` in `content.json`.
-- Design is in `src/styles.css`, page structure in `src/index.html`. The mascot is `src/beaver.svg`, also used as the favicon. On the page it is inlined so CSS can animate it (peek in, blink, ear twitch, gnaw on hover/tap); the build splits it into parts by colour, so keep the same palette if you redraw it.
+## Run it
 
-## Languages
-
-English is served at `/`, every other language at `/<code>/` (for example `/cs/`). On the home page, a small script looks at the visitor's browser languages and forwards them to the first one the site has; if English comes first or nothing matches, they stay on English. Picking a language in the menu is remembered and always wins.
-
-To add a language: copy `i18n/en.json` to `i18n/<code>.json`, translate it, and add `{ "code": "<code>", "name": "<native name>" }` to `languages` in `content.json`.
-
-## Run it locally
-
-Needs Node 18 or newer. There's nothing to install.
+Needs Node 20 or newer.
 
 ```bash
-npm start       # builds into dist/ and serves it at http://localhost:8080
+npm install
+npm run dev          # http://localhost:3000
+npm run build        # static export into out/
+npm run serve        # serve out/ at http://localhost:8080
+npm run check        # type-check, build, link check, axe
 ```
 
-`npm run build:offline` builds without calling GitHub, using the saved data in `data/github.json`.
+## Where things are
 
-## Deploy to GitHub Pages
+| What | Where |
+|---|---|
+| Settings: e-mail, price switch, demo URL, IČO, CV PDF path | `site.config.ts` |
+| All copy, one file per page | `content/cs/*.ts` |
+| Price numbers (and only there) | `content/cs/farnosti-prices.ts` |
+| Czech typography (non-breaking spaces, quotes, dashes, dates) | `lib/typography.ts`, applied by `typeset()` in every content file |
+| `/farnosti` components and styles (self-contained) | `features/farnosti/` |
+| Shared components | `components/` |
+| Design tokens and global styles | `app/globals.css` |
+| Fonts (Zilla Slab, Source Sans 3, subset to Latin + Czech) | `assets/fonts/` |
+| Source images → AVIF/WebP | `assets/images/` → `npm run images` → `public/images/` |
 
-One-time setup:
+Components read text only from `content/cs/`. An English version can go in `content/en/` later.
 
-1. On GitHub, create a **public** repo named exactly **`tomasvlasakdev.github.io`**.
-2. Push this folder to it:
-   ```bash
-   git init
-   git add .
-   git commit -m "First version of portfolio site"
-   git branch -M main
-   git remote add origin https://github.com/tomasvlasakdev/tomasvlasakdev.github.io.git
-   git push -u origin main
-   ```
-3. In the repo, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
-4. Open the **Actions** tab. The "Deploy to GitHub Pages" run should go green within a minute or two (if it ran before step 3 and failed, click **Re-run all jobs**).
-5. Visit **https://tomasvlasakdev.github.io**.
+### Price switch
 
-After that, every push to `main` redeploys automatically, and the site also rebuilds every Monday so project dates stay current.
+In `site.config.ts`:
+
+```ts
+showPrices: false,     // false → "Cena" block; true → "Ceník" with the price tables
+foundingOffer: false,  // only has an effect when showPrices is true
+```
+
+### CV PDF
+
+Put the developer CV at `public/cv/Tomas-Vlasak-CV-dev-cs.pdf`. The download button on `/cv` appears only if that file exists at build time.
+
+### Things still to fill in
+
+Search the code for `TODO(owner)`.
+
+## Domain
+
+The address comes from environment variables:
+
+- `NEXT_PUBLIC_SITE_URL` (default `https://tomasvlasakdev.github.io`)
+- `NEXT_PUBLIC_BASE_PATH` (default empty)
+
+To move to a custom domain (for example tomasvlasak.dev): set `NEXT_PUBLIC_SITE_URL` in `.github/workflows/deploy.yml`, add `public/CNAME` with the domain, and set the domain in the repo's Pages settings.
+
+## Deploy
+
+Every push runs type-check, build, link check and axe (`.github/workflows/deploy.yml`). A push to `main` that passes is published to GitHub Pages. Repo settings → Pages → Source must be **GitHub Actions**.
+
+Old URLs from the previous multi-language site (`/cs/`, `/de/cv/`, …) redirect to the new pages.
 
 ## Credits
 
-Headings use [Bricolage Grotesque](https://github.com/ateliertriay/bricolage) (SIL Open Font License, see `src/fonts/OFL.txt`).
+Fonts: [Zilla Slab](https://github.com/mozilla/zilla-slab) and [Source Sans 3](https://github.com/adobe-fonts/source-sans), both SIL Open Font License (see `assets/fonts/`).

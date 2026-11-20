@@ -1,13 +1,33 @@
 {
   "name": "tomasvlasakdev.github.io",
-  "description": "Personal portfolio of Tomáš Vlasák",
-  "scripts": {
-    "build": "node scripts/build.mjs",
-    "build:offline": "node scripts/build.mjs --offline",
-    "check": "node scripts/build.mjs --offline --strict",
-    "start": "node scripts/build.mjs && node scripts/serve.mjs 8080",
-    "serve": "node scripts/serve.mjs 8080"
-  },
+  "description": "Personal site of Tomáš Vlasák",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && node scripts/postbuild.mjs",
+    "typecheck": "tsc --noEmit",
+    "serve": "node scripts/serve.mjs",
+    "check:axe": "node scripts/check-axe.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "check": "npm run typecheck && npm run build && npm run check:links && npm run check:axe",
+    "images": "node scripts/optimize-images.mjs"
+  },
+  "dependencies": {
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "playwright": "^1.63.0",
+    "sharp": "^0.35.5",
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
 }
