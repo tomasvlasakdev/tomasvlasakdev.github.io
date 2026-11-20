@@ -35,7 +35,7 @@ export const farnosti = typeset({
     heading: "Jsem farník, ne agentura",
     text: "Když naše farnost v Čelákovicích potřebovala nový web, nabídl jsem se, že ho udělám. Bavilo mě stavět něco, co lidé každý týden opravdu používají. Proto teď stavím weby i pro další farnosti.",
     belief:
-      "Věřím, že přehledný web farníkům usnadní orientaci, důstojně farnost reprezentuje a může do kostela přivést i ty, kdo ji zatím neznají. Je to tichý prostředek evangelizace.",
+      "Věřím, že přehledný web farníkům usnadní orientaci, důstojně farnost reprezentuje a může do kostela přivést i ty, kdo ji zatím neznají. Svým způsobem tak slouží i k evangelizaci.",
     link: { label: "Jak vznikal web farnosti Čelákovice", href: "/projekty/web-farnosti-celakovice/" },
   },
 
@@ -53,6 +53,8 @@ export const farnosti = typeset({
       { id: "gifts", title: "Dary", text: "Číslo účtu a QR platba." },
       { id: "contacts", title: "Kontakty", text: "Úřední hodiny, IČO, datová schránka." },
       { id: "community", title: "Společenství", text: "Pravidelné aktivity a setkání." },
+      { id: "gallery", title: "Galerie", text: "Fotky z farních akcí a poutí." },
+      { id: "history", title: "Historie farářů", text: "Kněží, kteří ve farnosti působili." },
     ],
     closing: "Farář s více farnostmi je může mít na jednom webu.",
   },
