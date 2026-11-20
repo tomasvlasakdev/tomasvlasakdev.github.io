@@ -4,6 +4,7 @@ import { siteConfig } from "@/site.config";
 // Global copy: header, footer and the small UI labels shared by several pages.
 export const common = typeset({
   siteTitle: "Tomáš Vlasák",
+  monogram: "TV",
   nav: [
     { label: "Farnosti", href: "/farnosti/" },
     { label: "Projekty", href: "/projekty/" },

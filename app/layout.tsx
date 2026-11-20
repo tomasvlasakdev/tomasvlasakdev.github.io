@@ -3,6 +3,8 @@ import "./globals.css";
 import { zilla, sourceSans } from "@/lib/fonts";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Cursor } from "@/components/Cursor";
+import { Reveal } from "@/components/Reveal";
 import { common } from "@/content/cs/common";
 import { siteConfig } from "@/site.config";
 
@@ -33,10 +35,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {common.ui.skipLink}
         </a>
         <Header />
-        <main id="obsah" tabIndex={-1}>
-          {children}
-        </main>
-        <Footer />
+        <div className="frame">
+          <main id="obsah" tabIndex={-1}>
+            {children}
+          </main>
+          <Footer />
+        </div>
+        <Reveal />
+        <Cursor />
       </body>
     </html>
   );

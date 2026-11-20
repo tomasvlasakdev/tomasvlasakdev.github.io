@@ -7,6 +7,9 @@ export function Header() {
     <header className="site-header">
       <div className="wrap site-header__inner">
         <Link href="/" className="site-header__name">
+          <span className="site-header__mark" aria-hidden="true">
+            {common.monogram}
+          </span>
           {common.siteTitle}
         </Link>
         <NavMenu items={common.nav} label={common.ui.mainNav} toggleLabel={common.ui.menu} />

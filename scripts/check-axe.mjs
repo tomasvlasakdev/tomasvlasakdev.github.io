@@ -10,7 +10,8 @@ const browser = await chromium.launch();
 let failures = 0;
 
 for (const width of [375, 1280]) {
-  const context = await browser.newContext({ viewport: { width, height: 900 } });
+  // Reduced motion: scroll-reveal stays off, so every element is fully visible to the contrast checks.
+  const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: "reduce" });
   for (const p of pages) {
     const page = await context.newPage();
     await page.goto(origin + p, { waitUntil: "networkidle" });
