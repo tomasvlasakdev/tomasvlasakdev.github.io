@@ -2,7 +2,7 @@ import { typeset } from "@/lib/typography";
 
 export const oMne = typeset({
   meta: {
-    title: "O mně | Tomáš Vlasák",
+    title: "O mně | Tomáš Vlasák, vývojář webů z Čelákovic",
     description:
       "Student střední průmyslové školy na Proseku, vývojář webů z Čelákovic. Web farnosti, odborná praxe, týmový projekt.",
   },

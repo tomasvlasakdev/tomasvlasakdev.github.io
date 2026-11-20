@@ -2,7 +2,7 @@ import { typeset } from "@/lib/typography";
 
 export const home = typeset({
   meta: {
-    title: "Tomáš Vlasák – weby pro farnosti a vývoj webů",
+    title: "Tomáš Vlasák, Čelákovice – weby pro farnosti",
     description:
       "Stavím weby pro farnosti: bohoslužby, ohlášky, kalendář i formulář na mešní úmysly. Student a vývojář z Čelákovic.",
   },
@@ -18,7 +18,7 @@ export const home = typeset({
   parish: {
     heading: "Weby pro farnosti",
     text: "Bohoslužby, ohlášky, kalendář a formulář na mešní úmysly v jednom webu. Vyberete si ze čtyř vzhledů, úpravy zvládnete z telefonu a o provoz se starám já.",
-    link: { label: "Zjistit víc", href: "/farnosti/" },
+    link: { label: "Víc o webech pro farnosti", href: "/farnosti/" },
   },
   projects: {
     heading: "Projekty",

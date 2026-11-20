@@ -7,7 +7,7 @@ export const farnosti = typeset({
   meta: {
     title: "Weby pro farnosti | Tomáš Vlasák",
     description:
-      "Moderní farní web na vlastní doméně: bohoslužby, ohlášky, kalendář a formulář na mešní úmysly. Jednoduchý editor, o techniku se postarám já. Web i doména patří farnosti.",
+      "Moderní farní web na vlastní doméně: bohoslužby, ohlášky, kalendář a formulář na mešní úmysly. Jednoduchý editor, o techniku se postarám já.",
   },
 
   hero: {
