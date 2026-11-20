@@ -245,12 +245,6 @@ img {
 .section--dark a:hover {
   color: #fff;
 }
-.section--dark .kicker {
-  color: var(--gold-on-dark);
-}
-.section--dark .kicker::before {
-  background: var(--gold-on-dark);
-}
 
 .prose {
   max-width: 40rem;
@@ -262,25 +256,6 @@ img {
   max-width: 38rem;
 }
 
-.kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-body);
-  font-size: var(--step--1);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--warm);
-  margin-bottom: var(--space-2);
-}
-.kicker::before {
-  content: "";
-  width: 1.75rem;
-  height: 2px;
-  background: var(--gold);
-  border-radius: 2px;
-}
 
 .muted {
   color: var(--muted);

@@ -11,7 +11,6 @@ export const farnosti = typeset({
   },
 
   hero: {
-    kicker: "Weby pro farnosti",
     heading: "Farní web, o který se postaráte i bez programátora",
     lead: "Moderní web na vlastní doméně, který zvládnete spravovat sami. Bohoslužby, ohlášky, kalendář i formulář na mešní úmysly jsou připravené. O techniku se postarám já.",
     demoButton: "Prohlédnout ukázkový web",
@@ -31,7 +30,6 @@ export const farnosti = typeset({
   },
 
   motivation: {
-    kicker: "Proč to dělám",
     heading: "Jsem farník, ne agentura",
     text: "Když naše farnost v Čelákovicích potřebovala nový web, nabídl jsem se, že ho udělám. Bavilo mě stavět něco, co lidé každý týden opravdu používají. Proto teď stavím weby i pro další farnosti.",
     belief:
@@ -40,8 +38,8 @@ export const farnosti = typeset({
   },
 
   features: {
-    kicker: "Co web umí",
-    heading: "Všechno, co farnost potřebuje, na jednom místě",
+    heading: "Web si poskládáte podle sebe",
+    lead: "Vyberete si stránky, které farnost potřebuje. Co nepotřebujete, na webu nebude, a co chybí, doplním.",
     items: [
       { id: "mass", title: "Bohoslužby", text: "Pořad pro každý kostel i s výjimkami." },
       { id: "calendar", title: "Kalendář akcí", text: "Propojený s Google Kalendářem." },
@@ -56,11 +54,10 @@ export const farnosti = typeset({
       { id: "gallery", title: "Galerie", text: "Fotky z farních akcí a poutí." },
       { id: "history", title: "Historie farářů", text: "Kněží, kteří ve farnosti působili." },
     ],
-    closing: "Farář s více farnostmi je může mít na jednom webu.",
+    closing: "Farář, který spravuje více farností, je může mít na jednom webu.",
   },
 
   editor: {
-    kicker: "Editor",
     heading: "Úpravy zvládne každý",
     lead: "Web upravujete v prohlížeči, z počítače i z telefonu. Bez instalace a bez programování.",
     items: [
@@ -74,14 +71,12 @@ export const farnosti = typeset({
   },
 
   care: {
-    kicker: "Technika",
     heading: "O techniku se postarám já",
     lead: "Web běží spolehlivě a bezpečně, a když se něco pokazí, opravím to.",
     items: ["Hosting", "Doména", "Farní e-mail", "SSL certifikát", "Zálohy", "Aktualizace a opravy"],
   },
 
   ownership: {
-    kicker: "Jistota",
     heading: "Web patří farnosti",
     items: [
       { title: "Na jméno farnosti", text: "Web, doména i hosting jsou vedené na farnost." },
@@ -91,7 +86,6 @@ export const farnosti = typeset({
   },
 
   looks: {
-    kicker: "Vzhled",
     heading: "Čtyři vzhledy",
     lead: "Vyberte si jeden a doplňte vlastní barvu, logo a fotky.",
     items: [
@@ -107,14 +101,27 @@ export const farnosti = typeset({
   },
 
   process: {
-    kicker: "Postup",
     heading: "Jak to probíhá",
     steps: [
-      { title: "Náhled", text: "Před schůzkou připravím web s názvem a bohoslužbami vaší farnosti." },
-      { title: "Schůzka", text: "Vyberete vzhled a barvu a podepíšeme dohodu." },
-      { title: "Spuštění", text: "Web spustím na doméně farnosti a přenesu obsah ze starého webu." },
-      { title: "Zaškolení", text: "Za 45 minut spolu nahrajeme první ohlášky." },
-      { title: "Po měsíci", text: "Ozvu se a doladím, co je potřeba." },
+      {
+        title: "Úvodní rozhovor",
+        text: "Za 20–30 minut mi řeknete, co vám na současném webu chybí a na co se farníci nejčastěji ptají.",
+      },
+      {
+        title: "Náhled a rozbor",
+        text: "Připravím náhled s názvem a bohoslužbami vaší farnosti a ukážu, co současnému webu chybí.",
+      },
+      {
+        title: "Výběr stránek",
+        text: "Na schůzce vyberete vzhled a stránky, které farnost chce mít. Pak podepíšeme dohodu.",
+      },
+      {
+        title: "Příprava obsahu",
+        text: "Přenesu obsah ze starého webu a texty projdeme spolu. Každý týden vám pošlu odkaz na rozpracovaný web.",
+      },
+      { title: "Schválení", text: "Web spustíme, až ho schválíte." },
+      { title: "Spuštění a zaškolení", text: "Web spustím na doméně farnosti a správce za 45 minut zaškolím." },
+      { title: "Péče", text: "Hosting, zálohy, aktualizace a pomoc, kdykoli ji budete potřebovat." },
     ],
   },
 
@@ -190,6 +197,7 @@ export const farnosti = typeset({
   },
 
   schema: {
+    name: "Weby pro farnosti",
     serviceType: "Tvorba a správa webů pro farnosti",
     areaServed: "Česko",
   },

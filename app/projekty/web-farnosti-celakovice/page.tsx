@@ -11,7 +11,6 @@ export default function CaseStudyPage() {
     <>
       <section className="hero">
         <div className="wrap">
-          <p className="kicker">{c.kicker}</p>
           <h1>{c.heading}</h1>
           <dl className="facts" style={{ marginTop: "var(--space-4)" }}>
             {c.facts.map((f) => (

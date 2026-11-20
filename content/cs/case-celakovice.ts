@@ -6,7 +6,6 @@ export const caseCelakovice = typeset({
     description:
       "Případová studie: farní web s bohoslužbami, ohlášky, kalendářem a formulářem na mešní úmysly. Jediný vývojář, Next.js, testováno s farníky.",
   },
-  kicker: "Případová studie",
   heading: "Web farnosti Čelákovice",
   facts: [
     { label: "Role", value: "jediný vývojář" },

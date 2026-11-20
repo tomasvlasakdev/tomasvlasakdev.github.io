@@ -7,5 +7,5 @@ export const size = ogSize;
 export const contentType = ogContentType;
 
 export default function Image() {
-  return renderOg({ kicker: farnosti.hero.kicker, title: farnosti.hero.heading });
+  return renderOg({ title: farnosti.hero.heading });
 }

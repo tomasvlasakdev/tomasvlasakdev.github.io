@@ -13,7 +13,7 @@ export default function Page() {
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: farnosti.hero.kicker,
+          name: farnosti.schema.name,
           serviceType: farnosti.schema.serviceType,
           description: farnosti.meta.description,
           url: absoluteUrl("/farnosti/"),

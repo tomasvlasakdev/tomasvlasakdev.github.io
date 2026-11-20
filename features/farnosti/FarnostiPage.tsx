@@ -43,7 +43,6 @@ function Hero() {
   return (
     <section className={`hero ${s.hero}`}>
       <div className="wrap">
-        <p className="kicker">{hero.kicker}</p>
         <h1>{hero.heading}</h1>
         <p className={s.lead}>{hero.lead}</p>
         <div className="actions">
@@ -88,7 +87,6 @@ function Motivation() {
     <section className="section section--dark" aria-labelledby="proc">
       <div className={`wrap ${s.story}`}>
         <div>
-          <p className="kicker">{motivation.kicker}</p>
           <h2 id="proc">{motivation.heading}</h2>
           <p className={s.storyText}>{motivation.text}</p>
           <Link className="text-link" href={motivation.link.href}>
@@ -108,8 +106,8 @@ function Features() {
   return (
     <section className="section" aria-labelledby="co-web-umi">
       <div className="wrap">
-        <p className="kicker">{features.kicker}</p>
         <h2 id="co-web-umi">{features.heading}</h2>
+        <p className={s.sectionLead}>{features.lead}</p>
         <ul className={s.features}>
           {features.items.map((item) => (
             <li key={item.id}>
@@ -136,7 +134,6 @@ function EditorAndCare() {
       <div className={`wrap ${s.bento}`}>
         <article className={s.panel}>
           <div>
-            <p className="kicker">{editor.kicker}</p>
             <h2>{editor.heading}</h2>
             <p>{editor.lead}</p>
             <ul className={s.checks}>
@@ -169,7 +166,6 @@ function EditorAndCare() {
         </article>
         <article className={s.panel}>
           <div>
-            <p className="kicker">{care.kicker}</p>
             <h2>{care.heading}</h2>
             <p>{care.lead}</p>
           </div>
@@ -191,7 +187,6 @@ function Ownership() {
   return (
     <section className="section" aria-labelledby="web-patri-farnosti">
       <div className="wrap">
-        <p className="kicker">{ownership.kicker}</p>
         <h2 id="web-patri-farnosti">{ownership.heading}</h2>
         <ul className={s.guarantees}>
           {ownership.items.map((item, i) => (
@@ -214,7 +209,6 @@ function Looks() {
   return (
     <section className="section section--warm" aria-labelledby="ctyri-vzhledy">
       <div className="wrap">
-        <p className="kicker">{looks.kicker}</p>
         <h2 id="ctyri-vzhledy">{looks.heading}</h2>
         <p className={s.sectionLead}>{looks.lead}</p>
         <ul className={s.looks}>
@@ -275,7 +269,6 @@ function Process() {
   return (
     <section className="section" aria-labelledby="jak-to-probiha">
       <div className="wrap">
-        <p className="kicker">{process.kicker}</p>
         <h2 id="jak-to-probiha">{process.heading}</h2>
         <ol className={s.steps}>
           {process.steps.map((step) => (

@@ -10,7 +10,7 @@ export const ogContentType = "image/png";
 
 const fontDir = path.join(process.cwd(), "assets", "og-fonts");
 
-export async function renderOg({ kicker, title }: { kicker: string; title: string }) {
+export async function renderOg({ kicker, title }: { kicker?: string; title: string }) {
   const [head, body] = await Promise.all([
     readFile(path.join(fontDir, "zilla-slab-700.woff")),
     readFile(path.join(fontDir, "source-sans-3-400.woff")),

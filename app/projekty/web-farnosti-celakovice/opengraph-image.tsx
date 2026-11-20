@@ -7,5 +7,5 @@ export const size = ogSize;
 export const contentType = ogContentType;
 
 export default function Image() {
-  return renderOg({ kicker: c.kicker, title: c.heading });
+  return renderOg({ title: c.heading });
 }
