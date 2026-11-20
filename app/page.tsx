@@ -3,29 +3,15 @@ import { home } from "@/content/cs/home";
 import { projects } from "@/content/cs/projects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ContactEmail } from "@/components/ContactEmail";
-import { JsonLd } from "@/components/JsonLd";
-import { pageMetadata, absoluteUrl } from "@/lib/seo";
-import { siteConfig } from "@/site.config";
+import { pageMetadata } from "@/lib/seo";
 
+// Structured data for this page: lib/structured-data.ts.
 export const metadata = pageMetadata({ ...home.meta, path: "/" });
 
 export default function HomePage() {
   const { hero, parish, about, contact } = home;
   return (
     <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Person",
-          name: siteConfig.name,
-          url: absoluteUrl("/"),
-          email: `mailto:${siteConfig.contact.email}`,
-          jobTitle: "Full-stack vývojář",
-          address: { "@type": "PostalAddress", addressLocality: "Čelákovice", addressCountry: "CZ" },
-          sameAs: [siteConfig.links.github, siteConfig.links.linkedin],
-        }}
-      />
-
       <section className="hero">
         <div className="wrap">
           <h1>{hero.heading}</h1>

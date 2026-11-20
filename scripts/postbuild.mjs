@@ -1,10 +1,12 @@
 // Runs after `next build`. Writes tiny redirect pages for the old multi-language URLs
-// (/cs/, /cs/cv/, /de/, …) so links shared before the redesign keep working.
-import { mkdir, writeFile, access, readdir, readFile, rename } from "node:fs/promises";
+// (/cs/, /cs/cv/, /de/, …) so links shared before the redesign keep working, fixes the
+// OG image names and moves the JSON-LD into <head>.
+import { mkdir, writeFile, access, readdir, readFile, rename, rm } from "node:fs/promises";
 import path from "node:path";
 
 const out = path.resolve("out");
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://tomasvlasak.dev").replace(/\/$/, "");
 const legacyLangs = ["en", "cs", "sk", "de", "pl", "fr", "es"];
 
 const page = (target) => `<!doctype html>
@@ -13,7 +15,7 @@ const page = (target) => `<!doctype html>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
 <meta http-equiv="refresh" content="0; url=${target}">
-<link rel="canonical" href="${target}">
+<link rel="canonical" href="${siteUrl}${target}">
 <title>Přesměrování</title>
 </head>
 <body><p><a href="${target}">${target}</a></p></body>
@@ -52,7 +54,19 @@ for await (const file of walk(out)) {
   }
 }
 
+// JSON-LD into <head>: app/structured-data.json holds { "/path/": data } (see lib/structured-data.ts).
+const ldFile = path.join(out, "structured-data.json");
+const ld = JSON.parse(await readFile(ldFile, "utf8"));
+for (const [route, data] of Object.entries(ld)) {
+  const file = path.join(out, route, "index.html");
+  const html = await readFile(file, "utf8");
+  if (!html.includes("</head>")) throw new Error(`postbuild: no </head> in ${file}`);
+  const json = JSON.stringify(data).replace(/</g, "\\u003c");
+  await writeFile(file, html.replace("</head>", `<script type="application/ld+json">${json}</script></head>`));
+}
+await rm(ldFile);
+
 await access(path.join(out, "404.html"));
 // GitHub Pages must not run Jekyll over the export (it would drop _next/).
 await writeFile(path.join(out, ".nojekyll"), "");
-console.log(`postbuild: renamed ${ogCount} OG images, wrote redirects for ${legacyLangs.length} legacy language paths`);
+console.log(`postbuild: renamed ${ogCount} OG images, wrote redirects for ${legacyLangs.length} legacy language paths, JSON-LD in ${Object.keys(ld).length} pages`);

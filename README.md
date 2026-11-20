@@ -51,12 +51,18 @@ Search the code for `TODO(owner)`.
 
 ## Domain
 
-The address comes from environment variables:
+The site lives at https://tomasvlasak.dev (custom domain on GitHub Pages; `public/CNAME`). GitHub redirects tomasvlasakdev.github.io there, and every canonical, `og:url` and sitemap entry points at tomasvlasak.dev.
 
-- `NEXT_PUBLIC_SITE_URL` (default `https://tomasvlasakdev.github.io`)
+The address comes from environment variables, set in `.github/workflows/deploy.yml`:
+
+- `NEXT_PUBLIC_SITE_URL` (default `https://tomasvlasak.dev`)
 - `NEXT_PUBLIC_BASE_PATH` (default empty)
 
-To move to a custom domain (for example tomasvlasak.dev): set `NEXT_PUBLIC_SITE_URL` in `.github/workflows/deploy.yml`, add `public/CNAME` with the domain, and set the domain in the repo's Pages settings.
+## SEO
+
+- Titles, descriptions and Open Graph: `meta` in each `content/cs/*.ts`, built by `pageMetadata()` in `lib/seo.ts`. OG images: `opengraph-image.tsx` next to each page.
+- Structured data (JSON-LD): `lib/structured-data.ts`. `postbuild` puts it into the `<head>` of the page, so it is missing in `npm run dev`. More profiles for `sameAs`: `profiles` in `site.config.ts`.
+- Sitemap with `lastmod` from git: `app/sitemap.ts`. New public page → add it there and to `scripts/pages.mjs`.
 
 ## Deploy
 

@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NEXT_PUBLIC_SITE_URL: https://tomasvlasakdev.github.io
+  NEXT_PUBLIC_SITE_URL: https://tomasvlasak.dev
   NEXT_PUBLIC_BASE_PATH: ""
   NEXT_TELEMETRY_DISABLED: 1
 
@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history, so the sitemap gets real lastmod dates
       - uses: actions/setup-node@v4
         with:
           node-version: 22

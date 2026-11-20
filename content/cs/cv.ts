@@ -17,7 +17,7 @@ export const cv = typeset({
     { label: siteConfig.contact.email, href: `mailto:${siteConfig.contact.email}` },
     { label: "github.com/tomasvlasakdev", href: "https://github.com/tomasvlasakdev" },
     { label: "linkedin.com/in/tomas-vlasak", href: "https://www.linkedin.com/in/tomas-vlasak" },
-    { label: "tomasvlasakdev.github.io", href: "https://tomasvlasakdev.github.io/" },
+    { label: "tomasvlasak.dev", href: "https://tomasvlasak.dev/" },
     { label: "Čelákovice, Česko" },
   ],
   profile: {
