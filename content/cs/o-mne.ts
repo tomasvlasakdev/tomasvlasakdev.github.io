@@ -19,7 +19,6 @@ export const oMne = typeset({
   ],
   factsLabel: "Základní údaje",
   link: { label: "Zobrazit CV", href: "/cv/" },
-  // TODO(owner): photo. Until then the page shows a monogram instead.
+  // TODO(owner): photo. While null, the page shows no picture at all.
   photo: null as null | { src: string; width: number; height: number; alt: string },
-  monogram: "TV",
 });
