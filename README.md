@@ -1,4 +1,4 @@
-# tomasvlasakdev.github.io
+# tomasvlasak.dev
 
 Personal site of Tomáš Vlasák: websites for Catholic parishes first, portfolio second. Czech only for now.
 
@@ -51,7 +51,7 @@ Search the code for `TODO(owner)`.
 
 ## Domain
 
-The site lives at https://tomasvlasak.dev (custom domain on GitHub Pages; `public/CNAME`). GitHub redirects tomasvlasakdev.github.io there, and every canonical, `og:url` and sitemap entry points at tomasvlasak.dev.
+The site lives at https://tomasvlasak.dev (custom domain on GitHub Pages; `public/CNAME`). Every canonical, `og:url` and sitemap entry points there.
 
 The address comes from environment variables, set in `.github/workflows/deploy.yml`:
 

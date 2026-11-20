@@ -19,7 +19,7 @@ export const common = typeset({
       { label: "LinkedIn", href: siteConfig.links.linkedin },
       { label: "Ochrana soukromí", href: "/ochrana-soukromi/" },
     ],
-    sentence: "Stavím také weby pro malé spolky a firmy. Napište mi stručně, o co jde.",
+    sentence: "Stavím také weby pro malé spolky a firmy. Pokud nějaký potřebujete, ozvěte se mi.",
   },
   // UI labels not in the copy brief (short, functional).
   ui: {

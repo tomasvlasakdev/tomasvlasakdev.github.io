@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
   formatDetection: { telephone: false },
-  verification: siteConfig.googleSiteVerification ? { google: siteConfig.googleSiteVerification } : undefined,
 };
 
 export const viewport: Viewport = {

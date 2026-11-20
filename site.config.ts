@@ -12,8 +12,7 @@ export const siteConfig = {
   copyrightYear: 2026,
 
   contact: {
-    // TODO(owner): final e-mail address
-    email: "vlasaktomas.cz@gmail.com",
+    email: "tomas@tomasvlasak.dev",
   },
 
   links: {
@@ -30,9 +29,6 @@ export const siteConfig = {
     // TODO(owner): absolute URL of a photo of me (e.g. "https://tomasvlasak.dev/images/tomas.jpg"). Empty → left out of the structured data.
     photoUrl: "",
   },
-
-  // TODO(owner): token from Google Search Console (HTML tag method). Not needed if the domain is verified by DNS; empty → no tag.
-  googleSiteVerification: "TODO",
 
   /** false → "Cena" (block B); true → "Ceník" (block A). Numbers live in content/cs/farnosti-prices.ts. */
   showPrices: false,

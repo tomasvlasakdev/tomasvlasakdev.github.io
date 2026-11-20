@@ -14,7 +14,7 @@ export default function ProjektyPage() {
           <p className="lead">{projektyPage.intro}</p>
         </div>
       </section>
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section" style={{ paddingTop: "calc(28px + var(--space-5))" }}>
         <div className="wrap">
           <ul className="card-grid">
             {projects.map((p) => (
