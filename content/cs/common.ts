@@ -7,6 +7,7 @@ export const common = typeset({
   monogram: "TV",
   nav: [
     { label: "Farnosti", href: "/farnosti/" },
+    { label: "Ukázkový web", href: siteConfig.parish.demoUrl },
     { label: "Projekty", href: "/projekty/" },
     { label: "O mně", href: "/o-mne/" },
     { label: "CV", href: "/cv/" },

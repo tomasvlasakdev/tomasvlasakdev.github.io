@@ -36,9 +36,8 @@ export const siteConfig = {
   foundingOffer: false,
 
   parish: {
-    // TODO(owner): set to "https://demo.tomasvlasak.dev" once the domain is bought and the demo is live.
-    // While empty, every demo button and link is hidden.
-    demoUrl: "",
+    // The demo parish site (repo farnost-demo on Cloudflare Pages). Empty → every demo button and link is hidden.
+    demoUrl: "https://farnost.tomasvlasak.dev",
   },
 
   // TODO(owner): fill in after registering the trade (živnost). Empty → nothing is rendered.

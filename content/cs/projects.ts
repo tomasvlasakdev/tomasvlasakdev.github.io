@@ -1,4 +1,5 @@
 import { typeset } from "@/lib/typography";
+import { siteConfig } from "@/site.config";
 
 // Project cards, shared by the home page and /projekty.
 export type Project = {
@@ -10,6 +11,13 @@ export type Project = {
 };
 
 export const projects: Project[] = typeset([
+  {
+    id: "weby-pro-farnosti",
+    title: "Weby pro farnosti",
+    text: "Základ pro farní weby: čtyři vzhledy na výběr a jednoduchá administrace, ve které obsah upravují dobrovolníci.",
+    tags: ["Next.js", "TypeScript", "Sveltia CMS"],
+    link: { label: "Prohlédnout ukázkový web", href: siteConfig.parish.demoUrl },
+  },
   {
     id: "web-farnosti-celakovice",
     title: "Web farnosti Čelákovice",

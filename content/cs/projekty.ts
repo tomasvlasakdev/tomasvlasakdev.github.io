@@ -7,5 +7,5 @@ export const projektyPage = typeset({
       "Weby a aplikace, na kterých jsem pracoval: web farnosti Čelákovice, odborná praxe v TopTrans EU a týmový projekt Teamy.",
   },
   heading: "Projekty",
-  intro: "Tři věci, na kterých jsem pracoval. Nejobsáhlejší je web farnosti Čelákovice.",
+  intro: "Čtyři věci, na kterých jsem pracoval. Nejobsáhlejší je web farnosti Čelákovice.",
 });
