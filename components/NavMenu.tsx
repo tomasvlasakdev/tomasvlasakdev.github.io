@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 type Props = {
   items: { label: string; href: string }[];
@@ -15,6 +15,8 @@ export function NavMenu({ items, label, toggleLabel }: Props) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const id = useId();
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLElement>(null);
 
   // Close after navigation.
   useEffect(() => setOpen(false), [pathname]);
@@ -27,6 +29,17 @@ export function NavMenu({ items, label, toggleLabel }: Props) {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
+  // Close on a tap outside the menu (the panel lies over the page).
+  useEffect(() => {
+    if (!open) return;
+    const onPointer = (e: PointerEvent) => {
+      const t = e.target as Node;
+      if (!navRef.current?.contains(t) && !toggleRef.current?.contains(t)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointer);
+    return () => document.removeEventListener("pointerdown", onPointer);
+  }, [open]);
+
   const strip = (p: string) => p.replace(/\/+$/, "");
   const isCurrent = (href: string) => {
     const here = strip(pathname ?? "");
@@ -37,6 +50,7 @@ export function NavMenu({ items, label, toggleLabel }: Props) {
   return (
     <>
       <button
+        ref={toggleRef}
         type="button"
         className="nav__toggle"
         aria-expanded={open}
@@ -46,7 +60,7 @@ export function NavMenu({ items, label, toggleLabel }: Props) {
         <span className="nav__icon" aria-hidden="true" />
         {toggleLabel}
       </button>
-      <nav id={id} className="nav" aria-label={label} data-open={open}>
+      <nav ref={navRef} id={id} className="nav" aria-label={label} data-open={open}>
         <ul className="nav__list">
           {items.map((item) => (
             <li key={item.href}>

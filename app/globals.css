@@ -492,7 +492,9 @@ img {
     height: 0.8rem;
     position: relative;
     border-block: 2px solid currentColor;
+    transition: border-color var(--t-fast) ease;
   }
+  .nav__icon::before,
   .nav__icon::after {
     content: "";
     position: absolute;
@@ -501,46 +503,87 @@ img {
     top: 50%;
     border-top: 2px solid currentColor;
     transform: translateY(-50%);
+    transition: transform var(--t-med) var(--ease-spring);
   }
+  /* Open: the outer bars fade, the two middle ones turn into a cross. */
+  .nav__toggle[aria-expanded="true"] .nav__icon {
+    border-color: transparent;
+  }
+  .nav__toggle[aria-expanded="true"] .nav__icon::before {
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .nav__toggle[aria-expanded="true"] .nav__icon::after {
+    transform: translateY(-50%) rotate(-45deg);
+  }
+
+  /* Without JS the list simply sits under the header row. */
   .nav {
     flex-basis: 100%;
   }
   .nav__list {
     flex-direction: column;
+    align-items: flex-end;
     padding-bottom: var(--space-2);
   }
   .nav__link {
     padding: 0.8rem 0.25rem;
     font-size: 1.15rem;
     color: var(--text);
+    text-align: right;
   }
   .nav__link::after {
-    left: 0.25rem;
-    right: auto;
+    left: auto;
+    right: 0.25rem;
     width: 2rem;
   }
-  /* Hidden only once the inline script has marked the page with .js, so the menu stays usable without JS. */
-  .js .nav[data-open="false"] {
-    display: none;
-  }
-  .nav[data-open="true"] .nav__list > li {
-    animation: nav-in var(--t-med) var(--ease-out) both;
-  }
-  .nav[data-open="true"] .nav__list > li:nth-child(2) { animation-delay: 30ms; }
-  .nav[data-open="true"] .nav__list > li:nth-child(3) { animation-delay: 60ms; }
-  .nav[data-open="true"] .nav__list > li:nth-child(4) { animation-delay: 90ms; }
-  .nav[data-open="true"] .nav__list > li:nth-child(5) { animation-delay: 120ms; }
-}
 
-@keyframes nav-in {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
+  /* With JS the menu is a panel that drops down over the page from under the header,
+     so the header row never moves. visibility switches after the close transition,
+     which keeps hidden links out of the tab order without cutting the animation. */
+  .js .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fcfbf8;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 24px 32px -24px rgb(28 39 64 / 0.28);
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+    transition:
+      clip-path var(--t-med) var(--ease-out),
+      visibility 0s linear var(--t-med);
   }
-  to {
+  .js .nav[data-open="true"] {
+    clip-path: inset(0 0 -48px 0);
+    visibility: visible;
+    transition:
+      clip-path var(--t-med) var(--ease-out),
+      visibility 0s;
+  }
+  .js .nav__list {
+    max-width: var(--frame);
+    margin-inline: auto;
+    padding: var(--space-1) var(--gutter) var(--space-3);
+  }
+  .js .nav__list > li {
+    opacity: 0;
+    transform: translateX(14px);
+    transition:
+      opacity var(--t-fast) ease,
+      transform var(--t-med) var(--ease-out);
+  }
+  .js .nav[data-open="true"] .nav__list > li {
     opacity: 1;
     transform: none;
+    transition-delay: calc(60ms + var(--i, 0) * 35ms);
   }
+  .nav__list > li:nth-child(2) { --i: 1; }
+  .nav__list > li:nth-child(3) { --i: 2; }
+  .nav__list > li:nth-child(4) { --i: 3; }
+  .nav__list > li:nth-child(5) { --i: 4; }
+  .nav__list > li:nth-child(6) { --i: 5; }
+  .nav__list > li:nth-child(7) { --i: 6; }
 }
 
 /* ---------- Footer ---------- */
