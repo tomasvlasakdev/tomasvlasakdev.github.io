@@ -13,6 +13,23 @@ export default function PrivacyPage() {
         {o.paragraphs.map((p) => (
           <p key={p}>{p}</p>
         ))}
+        {o.sections.map((s) => (
+          <div key={s.id}>
+            <h2
+              id={s.id}
+              style={{
+                fontSize: "var(--step-1)",
+                marginTop: "var(--space-4)",
+                scrollMarginTop: "calc(var(--header-h) + var(--space-2))",
+              }}
+            >
+              {s.heading}
+            </h2>
+            {s.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+        ))}
         <LegalLine legal={siteConfig.legal} />
       </div>
     </section>
