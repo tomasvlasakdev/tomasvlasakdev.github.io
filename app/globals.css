@@ -205,7 +205,7 @@ img {
   padding-inline: var(--gutter);
 }
 
-/* Sections are separated by a hatched strip whose lines run across the whole screen. */
+/* Sections are separated by a hatched strip as wide as the content column. */
 .section {
   position: relative;
   padding-block: var(--space-6);
@@ -219,8 +219,8 @@ img {
   content: "";
   position: absolute;
   top: 0;
-  left: calc(50% - 50vw);
-  width: 100vw;
+  left: 0;
+  width: 100%;
   height: 28px;
   border-block: 1px solid var(--line);
   background-image: repeating-linear-gradient(315deg, var(--hatch) 0, var(--hatch) 1px, transparent 0, transparent 50%);
@@ -597,8 +597,8 @@ img {
   content: "";
   position: absolute;
   top: 0;
-  left: calc(50% - 50vw);
-  width: 100vw;
+  left: 0;
+  width: 100%;
   height: 28px;
   border-block: 1px solid var(--line);
   background-image: repeating-linear-gradient(315deg, var(--hatch) 0, var(--hatch) 1px, transparent 0, transparent 50%);
